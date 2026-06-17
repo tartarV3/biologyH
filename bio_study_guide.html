@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9th Grade Biology Final Study Guide</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg2: #161a24;
+    --bg3: #1e2333;
+    --card: #1e2333;
+    --border: #2a3045;
+    --text: #e8eaf0;
+    --text2: #9aa3b8;
+    --accent-g: #22c55e;
+    --accent-b: #3b82f6;
+    --accent-p: #a855f7;
+    --accent-o: #f97316;
+    --accent-r: #ef4444;
+    --accent-y: #eab308;
+    --accent-t: #14b8a6;
+    --correct: #22c55e;
+    --wrong: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--accent-g); padding: 1rem 1.5rem 1rem 0; border-right: 1px solid var(--border); margin-right: 0.5rem; white-space: nowrap; }
+  .nav-logo span { color: var(--text2); font-weight: 400; font-size: 0.85rem; display: block; }
+  nav button { background: none; border: none; color: var(--text2); cursor: pointer; padding: 1rem 0.9rem; font-size: 0.82rem; font-weight: 500; transition: color 0.2s, border-bottom 0.2s; border-bottom: 2px solid transparent; white-space: nowrap; }
+  nav button:hover { color: var(--text); }
+  nav button.active { color: var(--accent-b); border-bottom-color: var(--accent-b); }
+
+  /* MAIN */
+  .page { display: none; max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .page.active { display: block; }
+
+  /* HERO */
+  .hero { text-align: center; padding: 2.5rem 1rem 2rem; }
+  .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .hero h1 span { color: var(--accent-g); }
+  .hero p { color: var(--text2); font-size: 1rem; max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6; }
+  .unit-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .unit-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: all 0.2s; text-align: left; }
+  .unit-card:hover { border-color: var(--accent-b); transform: translateY(-2px); }
+  .unit-card .uc-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .unit-card .uc-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .unit-card .uc-sub { color: var(--text2); font-size: 0.8rem; line-height: 1.4; }
+  .unit-card .uc-pct { font-size: 0.75rem; font-weight: 600; margin-top: 0.5rem; padding: 2px 8px; border-radius: 4px; display: inline-block; }
+  .pct-high { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .pct-med { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .pct-low { background: rgba(34,197,94,0.15); color: #22c55e; }
+
+  /* SECTION HEADERS */
+  .section-header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .section-header h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .section-header p { color: var(--text2); font-size: 0.9rem; }
+  .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle; }
+  .tag-red { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .tag-blue { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .tag-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+
+  /* CONTENT CARDS */
+  .content-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .content-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-b); display: flex; align-items: center; gap: 0.5rem; }
+  .content-card h4 { font-size: 0.9rem; font-weight: 600; margin: 1rem 0 0.4rem; color: var(--accent-t); }
+  .content-card p, .content-card li { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+  .content-card ul, .content-card ol { padding-left: 1.25rem; }
+  .content-card li { margin-bottom: 0.3rem; }
+  .content-card .highlight { background: rgba(59,130,246,0.1); border-left: 3px solid var(--accent-b); padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 0.75rem 0; font-size: 0.85rem; }
+  .content-card .highlight.green { background: rgba(34,197,94,0.08); border-left-color: var(--accent-g); }
+  .content-card .highlight.orange { background: rgba(249,115,22,0.08); border-left-color: var(--accent-o); }
+  .content-card .highlight.purple { background: rgba(168,85,247,0.08); border-left-color: var(--accent-p); }
+  .content-card .highlight.red { background: rgba(239,68,68,0.08); border-left-color: var(--accent-r); }
+  .content-card .highlight.yellow { background: rgba(234,179,8,0.08); border-left-color: var(--accent-y); }
+  .content-card strong { color: var(--accent-y); font-weight: 600; }
+  .content-card code { background: var(--bg3); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 0.82rem; color: var(--accent-t); }
+
+  /* CODON TABLE */
+  .codon-table { overflow-x: auto; margin-top: 0.75rem; }
+  .codon-table table { border-collapse: collapse; font-size: 0.75rem; width: 100%; }
+  .codon-table th { background: var(--bg3); padding: 6px 8px; border: 1px solid var(--border); color: var(--accent-b); font-weight: 600; text-align: center; }
+  .codon-table td { padding: 4px 8px; border: 1px solid var(--border); text-align: center; color: var(--text2); }
+  .codon-table tr:hover td { background: var(--bg3); }
+
+  /* PUNNETT SQUARE */
+  .punnett { display: inline-grid; grid-template-columns: auto repeat(2, 60px); grid-template-rows: auto repeat(2, 60px); gap: 2px; margin: 0.75rem 0; }
+  .punnett .ph { background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; border-radius: 4px; padding: 8px; }
+  .punnett .ph.header { color: var(--accent-p); }
+  .punnett .pc { background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; border-radius: 4px; }
+  .punnett .pc.dom { color: var(--accent-g); }
+  .punnett .pc.het { color: var(--accent-y); }
+  .punnett .pc.rec { color: var(--accent-r); }
+  .punnett-wrap { display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; margin-top: 0.5rem; }
+
+  /* TWO-COL GRID */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+  @media (max-width: 680px) { .three-col { grid-template-columns: 1fr 1fr; } }
+
+  /* MINI CARDS */
+  .mini-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; }
+  .mini-card h5 { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .mini-card p { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+
+  /* QUIZ */
+  .quiz-controls { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; align-items: center; }
+  .quiz-controls select, .quiz-controls input { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; }
+  .quiz-controls button { background: var(--accent-b); color: white; border: none; padding: 0.45rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+  .quiz-controls button:hover { opacity: 0.9; }
+  .quiz-controls button.secondary { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
+
+  .quiz-question { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
+  .quiz-question .qnum { font-size: 0.75rem; color: var(--text2); margin-bottom: 0.4rem; }
+  .quiz-question .qtext { font-size: 0.92rem; font-weight: 500; margin-bottom: 1rem; line-height: 1.55; }
+  .quiz-question .options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .quiz-question .opt { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; cursor: pointer; font-size: 0.85rem; transition: all 0.15s; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .quiz-question .opt:hover { border-color: var(--accent-b); }
+  .quiz-question .opt.selected { border-color: var(--accent-b); background: rgba(59,130,246,0.1); }
+  .quiz-question .opt.correct { border-color: var(--correct); background: rgba(34,197,94,0.1); color: var(--correct); }
+  .quiz-question .opt.wrong { border-color: var(--wrong); background: rgba(239,68,68,0.1); color: var(--wrong); }
+  .quiz-question .explanation { margin-top: 0.75rem; padding: 0.75rem; background: rgba(34,197,94,0.07); border-radius: 6px; font-size: 0.82rem; color: var(--text2); border-left: 3px solid var(--correct); display: none; }
+  .quiz-question .explanation.show { display: block; }
+  .quiz-question .explanation.wrong-exp { border-left-color: var(--accent-o); background: rgba(249,115,22,0.07); }
+
+  .quiz-submit { background: var(--accent-g); color: #0f1117; border: none; padding: 0.7rem 2rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 700; margin-top: 0.5rem; }
+  .quiz-submit:hover { opacity: 0.9; }
+  .quiz-score { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; margin-top: 1.5rem; display: none; }
+  .quiz-score.show { display: block; }
+  .quiz-score .score-num { font-size: 3rem; font-weight: 700; }
+  .quiz-score .score-msg { color: var(--text2); font-size: 0.9rem; margin-top: 0.25rem; }
+  .progress-bar { background: var(--bg3); border-radius: 4px; height: 6px; margin: 0.5rem 0 1.5rem; }
+  .progress-fill { background: var(--accent-g); height: 100%; border-radius: 4px; transition: width 0.3s; }
+
+  /* FLASHCARDS */
+  .flashcard-container { perspective: 1000px; margin: 1.5rem 0; }
+  .flashcard { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem 2rem; min-height: 180px; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; transition: all 0.3s; position: relative; }
+  .flashcard:hover { border-color: var(--accent-b); }
+  .flashcard .front, .flashcard .back { font-size: 1rem; line-height: 1.6; }
+  .flashcard .back { color: var(--accent-g); display: none; }
+  .flashcard.flipped .front { display: none; }
+  .flashcard.flipped .back { display: block; }
+  .flashcard .flip-hint { position: absolute; bottom: 0.75rem; right: 1rem; font-size: 0.7rem; color: var(--text2); }
+  .fc-nav { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.75rem; }
+  .fc-nav button { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+  .fc-nav button:hover { border-color: var(--accent-b); }
+  .fc-counter { color: var(--text2); font-size: 0.85rem; flex: 1; text-align: center; }
+
+  /* PEDIGREE */
+  .pedigree-svg { background: var(--bg3); border-radius: 8px; padding: 1rem; margin: 0.75rem 0; }
+
+  /* TABS inside a section */
+  .sub-tabs { display: flex; gap: 0.25rem; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .sub-tab { background: none; border: none; color: var(--text2); cursor: pointer; padding: 0.6rem 1.1rem; font-size: 0.85rem; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .sub-tab:hover { color: var(--text); }
+  .sub-tab.active { color: var(--accent-b); border-bottom-color: var(--accent-b); font-weight: 600; }
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+
+  /* ACCORDION */
+  .accordion { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem; }
+  .accordion-header { background: var(--card); padding: 1rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.9rem; transition: background 0.15s; }
+  .accordion-header:hover { background: var(--bg3); }
+  .accordion-header .arrow { transition: transform 0.2s; color: var(--text2); }
+  .accordion-header.open .arrow { transform: rotate(180deg); }
+  .accordion-body { display: none; padding: 1rem 1.25rem; background: var(--bg3); font-size: 0.86rem; line-height: 1.7; }
+  .accordion-body.open { display: block; }
+
+  /* TREE SVG */
+  .tree-area { overflow-x: auto; }
+  .tree-area svg text { font-family: 'Segoe UI', sans-serif; }
+
+  /* CHEAT SHEET */
+  .cheat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+  .cheat-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; }
+  .cheat-item .ci-term { font-size: 0.82rem; font-weight: 700; color: var(--accent-y); margin-bottom: 0.2rem; }
+  .cheat-item .ci-def { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+
+  /* SCORE COLORS */
+  .s-a { color: var(--accent-g); }
+  .s-b { color: var(--accent-b); }
+  .s-c { color: var(--accent-y); }
+  .s-d { color: var(--accent-o); }
+  .s-f { color: var(--accent-r); }
+
+  /* UTIL */
+  .mt1 { margin-top: 0.5rem; }
+  .mt2 { margin-top: 1rem; }
+  .mt3 { margin-top: 1.5rem; }
+  .mb1 { margin-bottom: 0.5rem; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
+  .badge-r { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .badge-b { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .badge-g { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .badge-y { background: rgba(234,179,8,0.15); color: #eab308; }
+  .badge-p { background: rgba(168,85,247,0.15); color: #a855f7; }
+
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 0.5rem; }
+  table.data-table th { background: var(--bg3); padding: 7px 10px; border: 1px solid var(--border); color: var(--accent-b); font-weight: 600; text-align: left; }
+  table.data-table td { padding: 6px 10px; border: 1px solid var(--border); color: var(--text); }
+  table.data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Bio Final<span>NJ Standards · 9th Grade</span></div>
+  <button class="active" onclick="showPage('home')">Home</button>
+  <button onclick="showPage('genetics')">🧬 Genetics</button>
+  <button onclick="showPage('evolution')">🦎 Evolution</button>
+  <button onclick="showPage('ecology')">🌿 Ecology</button>
+  <button onclick="showPage('overview')">⚡ Quick Overview</button>
+  <button onclick="showPage('graphlab')">📈 Graph Lab</button>
+  <button onclick="showPage('crosslab')">🧫 Cross Lab</button>
+  <button onclick="showPage('flashcards')">🃏 Flashcards</button>
+  <button onclick="showPage('quiz')">✏️ Practice Quiz</button>
+  <button onclick="showPage('longquiz')">📝 Long Quiz</button>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <h1>9th Grade Biology<br><span>Final Exam Study Guide</span></h1>
+    <p>New Jersey Core Curriculum Content Standards · Aligned to your class units 2C–4B. Focus heavily on Genetics, then Evolution and Ecology.</p>
+  </div>
+  <div class="unit-cards">
+    <div class="unit-card" onclick="showPage('genetics')">
+      <div class="uc-icon">🧬</div>
+      <div class="uc-title">Unit 2: Genetics</div>
+      <div class="uc-sub">DNA replication, transcription, translation, mutations, crosses, pedigrees, gel electrophoresis, genetic technologies</div>
+      <div class="uc-pct pct-high">30–40% of exam</div>
+    </div>
+    <div class="unit-card" onclick="showPage('evolution')">
+      <div class="uc-icon">🦎</div>
+      <div class="uc-title">Unit 3: Evolution</div>
+      <div class="uc-sub">Darwin's theory, natural selection, speciation, isolation, genetic drift, cladograms, human evolution</div>
+      <div class="uc-pct pct-med">~25% of exam</div>
+    </div>
+    <div class="unit-card" onclick="showPage('ecology')">
+      <div class="uc-icon">🌿</div>
+      <div class="uc-title">Unit 4: Ecology</div>
+      <div class="uc-sub">Food webs, biomagnification, greenhouse effect, deforestation, overexploitation, conservation, graph reading</div>
+      <div class="uc-pct pct-med">~25% of exam</div>
+    </div>
+    <div class="unit-card" onclick="showPage('overview')">
+      <div class="uc-icon">⚡</div>
+      <div class="uc-title">Quick Overview</div>
+      <div class="uc-sub">20-minute last-minute cram sheet — every key fact, formula, and rule you need right before the exam</div>
+      <div class="uc-pct pct-high">Do This Last! →</div>
+    </div>
+    <div class="unit-card" onclick="showPage('graphlab')">
+      <div class="uc-icon">📈</div>
+      <div class="uc-title">Graph Lab</div>
+      <div class="uc-sub">Interactive graph interpretation — population curves, energy pyramids, biomagnification, predator-prey</div>
+      <div class="uc-pct pct-med">Interpret Graphs →</div>
+    </div>
+    <div class="unit-card" onclick="showPage('crosslab')">
+      <div class="uc-icon">🧫</div>
+      <div class="uc-title">Cross Lab</div>
+      <div class="uc-sub">Step-by-step interactive genetic cross problems with full Punnett squares and answers</div>
+      <div class="uc-pct pct-med">Practice Crosses →</div>
+    </div>
+    <div class="unit-card" onclick="showPage('quiz')">
+      <div class="uc-icon">✏️</div>
+      <div class="uc-title">Practice Quizzes</div>
+      <div class="uc-sub">Short topic-focused quizzes with immediate feedback and explanations</div>
+      <div class="uc-pct pct-low">Start Practicing →</div>
+    </div>
+    <div class="unit-card" onclick="showPage('longquiz')">
+      <div class="uc-icon">📝</div>
+      <div class="uc-title">Long Quiz (50 Q)</div>
+      <div class="uc-sub">Full-length timed practice exam covering all topics with score breakdown</div>
+      <div class="uc-pct pct-low">Full Exam Mode →</div>
+    </div>
+    <div class="unit-card" onclick="showPage('flashcards')">
+      <div class="uc-icon">🃏</div>
+      <div class="uc-title">Flashcards</div>
+      <div class="uc-sub">Key terms and concepts to drill — flip to reveal definitions</div>
+      <div class="uc-pct pct-low">Drill Terms →</div>
+    </div>
+  </div>
+
+  <div class="content-card mt3">
+    <h3>📋 Exam Weight & What to Focus On</h3>
+    <table class="data-table">
+      <tr><th>Topic</th><th>Approx. Weight</th><th>Key Skills</th></tr>
+      <tr><td>🧬 Genetics (Unit 2C–2E)</td><td><span class="badge badge-r">30–40%</span></td><td>DNA→protein, mutations, crosses, pedigrees, gel electrophoresis, biotechnology</td></tr>
+      <tr><td>🦎 Evolution (Unit 3B–3C)</td><td><span class="badge badge-b">~25%</span></td><td>Natural selection, speciation, isolation types, cladograms, human evolution</td></tr>
+      <tr><td>🌿 Ecology (Unit 4A–4B)</td><td><span class="badge badge-b">~25%</span></td><td>Food webs, biomagnification, greenhouse effect, population graphs</td></tr>
+      <tr><td>⚗️ Structure &amp; Function (Q1)</td><td><span class="badge badge-g">~10%</span></td><td>Biomolecules, diffusion, photosynthesis/respiration (skim review)</td></tr>
+    </table>
+    <div class="highlight mt2">💡 <strong>NJ Science Standards Note:</strong> Expect data interpretation, graph reading, and applying concepts to scenarios — not just definitions. The exam tests understanding, not memorization alone.</div>
+  </div>
+</div>
+
+<!-- GENETICS PAGE -->
+<div id="page-genetics" class="page">
+  <div class="section-header">
+    <h2>🧬 Genetics <span class="tag tag-red">30–40% of exam</span></h2>
+    <p>DNA, RNA, protein synthesis, mutations, inheritance patterns, pedigrees, and biotechnology</p>
+  </div>
+
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('genetics','dna')">DNA & Replication</button>
+    <button class="sub-tab" onclick="showSub('genetics','protein')">Transcription & Translation</button>
+    <button class="sub-tab" onclick="showSub('genetics','mutations')">Mutations</button>
+    <button class="sub-tab" onclick="showSub('genetics','crosses')">Genetic Crosses</button>
+    <button class="sub-tab" onclick="showSub('genetics','pedigrees')">Pedigrees & Gel Electro</button>
+    <button class="sub-tab" onclick="showSub('genetics','tech')">Genetic Technologies</button>
+  </div>
+
+  <!-- DNA -->
+  <div id="sub-genetics-dna" class="sub-panel active">
+    <div class="content-card">
+      <h3>🔬 Structure of DNA vs. RNA</h3>
+      <div class="two-col">
+        <div>
+          <h4>DNA</h4>
+          <ul>
+            <li>Double-stranded helix</li>
+            <li>Sugar: <strong>deoxyribose</strong></li>
+            <li>Bases: <strong>A, T, G, C</strong> (Adenine, Thymine, Guanine, Cytosine)</li>
+            <li>Found in the <strong>nucleus</strong></li>
+            <li>Stores genetic information permanently</li>
+            <li>A pairs with T (2 H-bonds), G pairs with C (3 H-bonds)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>RNA</h4>
+          <ul>
+            <li>Single-stranded</li>
+            <li>Sugar: <strong>ribose</strong></li>
+            <li>Bases: <strong>A, U, G, C</strong> (Uracil replaces Thymine)</li>
+            <li>Found in nucleus AND cytoplasm</li>
+            <li>Carries instructions for protein building</li>
+            <li>Three types: mRNA, tRNA, rRNA</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight purple mt2">🔑 <strong>Chargaff's Rules:</strong> In any DNA molecule, %A = %T and %G = %C. This is the basis of complementary base pairing.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔁 DNA Replication</h3>
+      <div class="highlight green">Goal: Copy DNA before cell division so each daughter cell gets a complete set of chromosomes.</div>
+      <h4>Key Steps (in order)</h4>
+      <ol>
+        <li><strong>Helicase</strong> unwinds and "unzips" the double helix by breaking hydrogen bonds between base pairs.</li>
+        <li>Each strand serves as a <strong>template</strong> for a new complementary strand.</li>
+        <li>A short <strong>RNA primer</strong> attaches to start the new strand (DNA polymerase can't start from scratch).</li>
+        <li><strong>DNA polymerase</strong> reads the template 3'→5' and builds the new strand 5'→3', adding complementary nucleotides.</li>
+        <li>The <strong>leading strand</strong> is made continuously; the <strong>lagging strand</strong> is made in fragments (Okazaki fragments).</li>
+        <li><strong>DNA ligase</strong> joins the fragments together.</li>
+        <li>Result: 2 identical DNA molecules, each with one old strand + one new strand = <strong>semiconservative replication</strong>.</li>
+      </ol>
+      <div class="highlight orange mt2">⚠️ <strong>Why errors are rare:</strong> DNA polymerase has a "proofreading" function — it checks each new base and removes mistakes. Error rate: ~1 in 10 billion bases.</div>
+      <div class="two-col mt2">
+        <div class="mini-card">
+          <h5>5' to 3' Direction</h5>
+          <p>The new strand is ALWAYS built in the 5'→3' direction. The template is read 3'→5'. This is critical — the lagging strand must be built in fragments because it runs antiparallel.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Why Semiconservative?</h5>
+          <p>Each new DNA molecule keeps one original (conserved) strand and one newly made strand. "Semi" = half conserved. Confirmed by Meselson-Stahl experiment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔗 DNA Replication & Cell Division Connection</h3>
+      <ul>
+        <li>DNA replication happens during <strong>S phase</strong> (Synthesis phase) of Interphase — BEFORE mitosis or meiosis begins.</li>
+        <li>Without replication, daughter cells would only get half the chromosomes.</li>
+        <li><strong>Mitosis</strong> → body cells (somatic), produces 2 identical diploid cells (2n)</li>
+        <li><strong>Meiosis</strong> → sex cells (gametes), produces 4 genetically unique haploid cells (n)</li>
+        <li>Meiosis is responsible for genetic variation through crossing over and independent assortment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TRANSCRIPTION & TRANSLATION -->
+  <div id="sub-genetics-protein" class="sub-panel">
+    <div class="content-card">
+      <h3>📜 Transcription: DNA → mRNA</h3>
+      <div class="highlight">Location: <strong>Nucleus</strong> · Template: DNA · Product: mRNA</div>
+      <h4>Steps</h4>
+      <ol>
+        <li><strong>RNA polymerase</strong> binds to the <strong>promoter</strong> region on DNA.</li>
+        <li>The DNA double helix unwinds locally.</li>
+        <li>RNA polymerase reads the template strand 3'→5' and builds mRNA 5'→3' using RNA nucleotides (A, U, G, C).</li>
+        <li>When it reaches the <strong>terminator</strong> sequence, it stops and releases the mRNA.</li>
+        <li>The mRNA is processed: <strong>introns</strong> (non-coding) are spliced out, <strong>exons</strong> (coding) are joined.</li>
+        <li>A 5' cap and poly-A tail are added for protection and export.</li>
+      </ol>
+      <div class="highlight purple mt2">💡 <strong>Key rule:</strong> A→U, T→A, G→C, C→G when making mRNA from DNA template. Remember: Thymine in DNA becomes Uracil in RNA.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🏭 Translation: mRNA → Protein</h3>
+      <div class="highlight green">Location: <strong>Ribosome</strong> (cytoplasm) · Template: mRNA · Product: Polypeptide/Protein</div>
+      <h4>Key Players</h4>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5>mRNA</h5>
+          <p>Carries the genetic code from nucleus to ribosome. Read in 3-base groups called <strong>codons</strong>.</p>
+        </div>
+        <div class="mini-card">
+          <h5>tRNA</h5>
+          <p>Brings amino acids to the ribosome. Has an <strong>anticodon</strong> that pairs with mRNA codon, and carries the correct amino acid on the other end.</p>
+        </div>
+        <div class="mini-card">
+          <h5>rRNA</h5>
+          <p>Makes up the ribosome structure. Has enzymatic activity (ribozyme) that forms peptide bonds between amino acids.</p>
+        </div>
+      </div>
+      <h4>Steps of Translation</h4>
+      <ol>
+        <li><strong>Initiation:</strong> Ribosome assembles at the <strong>start codon (AUG)</strong>, which codes for Methionine. Small and large ribosomal subunits join.</li>
+        <li><strong>Elongation:</strong> tRNA brings amino acids, anticodon matches mRNA codon, peptide bond forms between amino acids. Ribosome moves 3 bases down mRNA (5'→3').</li>
+        <li><strong>Termination:</strong> Ribosome reaches a <strong>stop codon (UAA, UAG, UGA)</strong>. No tRNA matches these. Release factor protein frees the polypeptide chain.</li>
+        <li>Polypeptide folds into a functional <strong>protein</strong>.</li>
+      </ol>
+      <div class="highlight red mt2">🛑 <strong>Stop codons:</strong> UAA, UAG, UGA → No amino acid; they signal "end of protein." <strong>Start codon:</strong> AUG → Always codes for Methionine (Met).</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔤 Reading the Genetic Code: Codons → Amino Acids</h3>
+      <p style="margin-bottom:0.75rem; font-size:0.85rem;">Each codon = 3 mRNA bases = 1 amino acid. There are 64 possible codons but only 20 amino acids → the code is <strong>redundant/degenerate</strong> (multiple codons can code for the same amino acid).</p>
+      <div class="highlight orange">📌 <strong>How to use a codon table:</strong> Find the 1st base on the left side, 2nd base across the top, 3rd base on the right. Example: AUG → Met (start codon). UCU → Ser.</div>
+      <div class="codon-table mt2">
+        <table>
+          <tr><th>1st Base</th><th colspan="4">2nd Base</th><th>3rd Base</th></tr>
+          <tr><th></th><th>U</th><th>C</th><th>A</th><th>G</th><th></th></tr>
+          <tr><th rowspan="4">U</th><td>Phe</td><td>Ser</td><td>Tyr</td><td>Cys</td><th>U</th></tr>
+          <tr><td>Phe</td><td>Ser</td><td>Tyr</td><td>Cys</td><th>C</th></tr>
+          <tr><td>Leu</td><td>Ser</td><td>STOP</td><td>STOP</td><th>A</th></tr>
+          <tr><td>Leu</td><td>Ser</td><td>STOP</td><td>Trp</td><th>G</th></tr>
+          <tr><th rowspan="4">C</th><td>Leu</td><td>Pro</td><td>His</td><td>Arg</td><th>U</th></tr>
+          <tr><td>Leu</td><td>Pro</td><td>His</td><td>Arg</td><th>C</th></tr>
+          <tr><td>Leu</td><td>Pro</td><td>Gln</td><td>Arg</td><th>A</th></tr>
+          <tr><td>Leu</td><td>Pro</td><td>Gln</td><td>Arg</td><th>G</th></tr>
+          <tr><th rowspan="4">A</th><td>Ile</td><td>Thr</td><td>Asn</td><td>Ser</td><th>U</th></tr>
+          <tr><td>Ile</td><td>Thr</td><td>Asn</td><td>Ser</td><th>C</th></tr>
+          <tr><td>Ile</td><td>Thr</td><td>Lys</td><td>Arg</td><th>A</th></tr>
+          <tr><td><strong>Met/START</strong></td><td>Thr</td><td>Lys</td><td>Arg</td><th>G</th></tr>
+          <tr><th rowspan="4">G</th><td>Val</td><td>Ala</td><td>Asp</td><td>Gly</td><th>U</th></tr>
+          <tr><td>Val</td><td>Ala</td><td>Asp</td><td>Gly</td><th>C</th></tr>
+          <tr><td>Val</td><td>Ala</td><td>Glu</td><td>Gly</td><th>A</th></tr>
+          <tr><td>Val</td><td>Ala</td><td>Glu</td><td>Gly</td><th>G</th></tr>
+        </table>
+      </div>
+      <div class="highlight mt2"><strong>Practice:</strong> DNA template: 3'–TAC–GGA–ATT–ACT–5' <br>→ mRNA: 5'–AUG–CCU–UAA–UGA–3' <br>→ Protein: Met – Pro – STOP (only 2 amino acids; UAA is stop)</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔄 Central Dogma Summary</h3>
+      <div class="highlight purple"><strong>DNA → (transcription) → mRNA → (translation) → Protein</strong><br><br>Remember the full chain: DNA → mRNA → tRNA (carrying amino acids) → Amino acid chain → Functional Protein<br><br>Enzymes involved: RNA polymerase (transcription), Ribosomes + rRNA (translation), tRNA (brings amino acids)</div>
+    </div>
+  </div>
+
+  <!-- MUTATIONS -->
+  <div id="sub-genetics-mutations" class="sub-panel">
+    <div class="content-card">
+      <h3>⚡ Types of Point Mutations (Base-Level)</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">Point mutations affect a single nucleotide base in the DNA sequence.</p>
+      <table class="data-table">
+        <tr><th>Type</th><th>What Happens</th><th>Effect on Protein</th><th>Example</th></tr>
+        <tr><td><strong>Silent (Neutral)</strong></td><td>Base changed but same amino acid coded (redundancy)</td><td>No change – same protein</td><td>GAA→GAG (both = Glu)</td></tr>
+        <tr><td><strong>Missense</strong></td><td>Base changed → different amino acid</td><td>Possibly different protein – may or may not affect function</td><td>Sickle cell: GAG→GUG (Glu→Val)</td></tr>
+        <tr><td><strong>Nonsense</strong></td><td>Base changed → creates a STOP codon</td><td>Shorter, usually non-functional protein</td><td>CAG→UAG (Gln→STOP)</td></tr>
+        <tr><td><strong>Frameshift – Insertion</strong></td><td>Extra base(s) added → shifts reading frame</td><td>All amino acids downstream are wrong – usually non-functional</td><td>...AUG-GCC-UAA... → AUG-<u>C</u>GCC-UAA (shifted)</td></tr>
+        <tr><td><strong>Frameshift – Deletion</strong></td><td>Base(s) removed → shifts reading frame</td><td>All amino acids downstream are wrong – usually non-functional</td><td>Most severe if not in multiples of 3</td></tr>
+      </table>
+      <div class="highlight red mt2">⚠️ <strong>Frameshifts are typically the most damaging</strong> because they change EVERY amino acid after the mutation point. Nonsense mutations are also very harmful. Silent mutations have no effect.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🧩 Chromosomal Mutations</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">These affect large segments of chromosomes — more genes are affected than point mutations.</p>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5>Deletion</h5>
+          <p>A segment of chromosome is LOST. Fewer genes. Example: Cri du chat syndrome (deletion of chromosome 5p).</p>
+        </div>
+        <div class="mini-card">
+          <h5>Duplication</h5>
+          <p>A segment is COPIED twice on the same chromosome. Extra genes — can lead to overexpression.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Inversion</h5>
+          <p>A segment is FLIPPED 180° and reinserted. Genes present but in wrong order.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Translocation</h5>
+          <p>A segment MOVES to a different chromosome. Can disrupt gene function. Example: Philadelphia chromosome in leukemia.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Nondisjunction</h5>
+          <p>Chromosomes fail to separate during meiosis → gamete has wrong number. Example: Trisomy 21 (Down Syndrome).</p>
+        </div>
+        <div class="mini-card">
+          <h5>Comparing to Point Mutations</h5>
+          <p>Chromosomal = large scale, many genes. Point = one base, possibly one amino acid. Chromosomal mutations are more likely to be lethal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🌡️ Effects on Phenotype</h3>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5 style="color:var(--accent-g)">Positive / Beneficial</h5>
+          <p>Mutation improves survival or reproduction. Example: mutation giving antibiotic resistance to bacteria. Rare in complex organisms. These are selected FOR in evolution.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--text2)">Neutral / Silent</h5>
+          <p>No change in phenotype. Silent mutations (same amino acid) or mutations in non-coding regions. Neither selected for nor against.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-r)">Negative / Harmful</h5>
+          <p>Reduces fitness. Most mutations fall here. Examples: sickle cell disease (missense), cancer-causing mutations (frameshifts in tumor suppressors). Selected AGAINST.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CROSSES -->
+  <div id="sub-genetics-crosses" class="sub-panel">
+    <div class="content-card">
+      <h3>📐 Key Vocabulary for Genetic Crosses</h3>
+      <div class="cheat-grid mt1">
+        <div class="cheat-item"><div class="ci-term">Allele</div><div class="ci-def">Different versions of a gene (e.g., B = brown eyes, b = blue eyes)</div></div>
+        <div class="cheat-item"><div class="ci-term">Genotype</div><div class="ci-def">The actual genetic makeup (BB, Bb, bb)</div></div>
+        <div class="cheat-item"><div class="ci-term">Phenotype</div><div class="ci-def">The physical trait you see (brown eyes, blue eyes)</div></div>
+        <div class="cheat-item"><div class="ci-term">Dominant</div><div class="ci-def">Allele that masks the other; expressed in both homozygous (BB) and heterozygous (Bb)</div></div>
+        <div class="cheat-item"><div class="ci-term">Recessive</div><div class="ci-def">Only expressed when homozygous (bb); masked when dominant is present</div></div>
+        <div class="cheat-item"><div class="ci-term">Homozygous</div><div class="ci-def">Same two alleles (BB or bb); pure-breeding</div></div>
+        <div class="cheat-item"><div class="ci-term">Heterozygous</div><div class="ci-def">Two different alleles (Bb); hybrid</div></div>
+        <div class="cheat-item"><div class="ci-term">P generation</div><div class="ci-def">Parental generation (the original cross)</div></div>
+        <div class="cheat-item"><div class="ci-term">F1 generation</div><div class="ci-def">First offspring generation from P cross</div></div>
+        <div class="cheat-item"><div class="ci-term">F2 generation</div><div class="ci-def">Offspring from crossing two F1 individuals</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🟩 Monohybrid Cross (1 trait, Simple Dominant)</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">Cross two heterozygous parents (Bb × Bb). B = black fur (dominant), b = white fur (recessive).</p>
+      <div class="punnett-wrap">
+        <div>
+          <div class="punnett">
+            <div class="ph" style="background:transparent;border:none;"></div>
+            <div class="ph header">B</div>
+            <div class="ph header">b</div>
+            <div class="ph header">B</div>
+            <div class="pc dom">BB</div>
+            <div class="pc het">Bb</div>
+            <div class="ph header">b</div>
+            <div class="pc het">Bb</div>
+            <div class="pc rec">bb</div>
+          </div>
+        </div>
+        <div style="font-size:0.85rem;">
+          <p><strong>Genotype ratio:</strong> 1 BB : 2 Bb : 1 bb</p>
+          <p style="margin-top:0.4rem;"><strong>Phenotype ratio:</strong> 3 black : 1 white</p>
+          <p style="margin-top:0.4rem; color:var(--text2);">1 BB = homozygous dominant (black)<br>2 Bb = heterozygous (black — dominant masks recessive)<br>1 bb = homozygous recessive (white)</p>
+          <div class="highlight green mt2">Law of Segregation: Each parent passes only ONE of their two alleles to offspring.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🟨 Incomplete Dominance</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">Neither allele is fully dominant. Heterozygotes show a <strong>blended/intermediate phenotype</strong>. No uppercase/lowercase notation — use R¹ R² or R and R'.</p>
+      <p style="font-size:0.85rem;">Example: Red (RR) × White (R'R') → Pink (RR') offspring</p>
+      <div class="punnett-wrap">
+        <div>
+          <div class="punnett">
+            <div class="ph" style="background:transparent;border:none;"></div>
+            <div class="ph header">R</div>
+            <div class="ph header">R</div>
+            <div class="ph header">R'</div>
+            <div class="pc het" style="color:#ef4444">RR</div>
+            <div class="pc het">RR'</div>
+            <div class="ph header">R'</div>
+            <div class="pc het">RR'</div>
+            <div class="pc rec" style="color:#9ca3af">R'R'</div>
+          </div>
+        </div>
+        <div style="font-size:0.85rem;">
+          <p>F1 (RR × R'R') → All RR' = pink</p>
+          <p style="margin-top:0.4rem;">F2 (RR' × RR') → 1 Red : 2 Pink : 1 White</p>
+          <div class="highlight orange mt2">KEY: Phenotype ratio = genotype ratio (1:2:1) in incomplete dominance — unlike simple dominance where it's 3:1 phenotype.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔴⚪ Codominance & Multiple Alleles (Blood Types)</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;"><strong>Codominance:</strong> BOTH alleles are fully expressed in the heterozygote — not blended, but BOTH visible simultaneously. Classic example: Blood type AB (both A and B antigens present on red blood cells).</p>
+      <h4>ABO Blood Type — Multiple Alleles (I<sup>A</sup>, I<sup>B</sup>, i)</h4>
+      <table class="data-table mt1">
+        <tr><th>Blood Type</th><th>Genotype(s)</th><th>Antigens on RBC</th><th>Antibodies in Plasma</th><th>Can Receive From</th></tr>
+        <tr><td>A</td><td>I<sup>A</sup>I<sup>A</sup> or I<sup>A</sup>i</td><td>A</td><td>Anti-B</td><td>A, O</td></tr>
+        <tr><td>B</td><td>I<sup>B</sup>I<sup>B</sup> or I<sup>B</sup>i</td><td>B</td><td>Anti-A</td><td>B, O</td></tr>
+        <tr><td>AB</td><td>I<sup>A</sup>I<sup>B</sup></td><td>A and B</td><td>None</td><td>A, B, AB, O (universal recipient)</td></tr>
+        <tr><td>O</td><td>ii</td><td>Neither</td><td>Anti-A and Anti-B</td><td>O only (universal donor)</td></tr>
+      </table>
+      <div class="highlight purple mt2">📌 <strong>Multiple alleles:</strong> More than 2 possible alleles exist in the population, but each individual only carries 2 alleles. I<sup>A</sup> and I<sup>B</sup> are CODOMINANT to each other; both are DOMINANT over i.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔲 Dihybrid Cross (2 traits)</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">Cross two traits simultaneously. Example: Seed shape (R=round dominant, r=wrinkled) × Seed color (Y=yellow dominant, y=green). Cross: RrYy × RrYy</p>
+      <div class="highlight">Use the <strong>FOIL or 16-box Punnett</strong> method. Gametes: RY, Ry, rY, ry<br><strong>Expected phenotype ratio: 9 : 3 : 3 : 1</strong><br>9 Round Yellow : 3 Round Green : 3 Wrinkled Yellow : 1 Wrinkled Green</div>
+      <h4>Law of Independent Assortment</h4>
+      <p style="font-size:0.85rem;">Alleles for different genes sort independently into gametes (as long as the genes are on different chromosomes). This is why we multiply probabilities for two independent traits.</p>
+      <div class="highlight green mt2">💡 <strong>Probability shortcut:</strong> P(round) from Rr×Rr = 3/4. P(yellow) from Yy×Yy = 3/4. P(round AND yellow) = 3/4 × 3/4 = 9/16</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔗 X-linked Inheritance</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">Some genes are located on the X chromosome. Because males (XY) only have one X, they express X-linked recessive traits more often.</p>
+      <div class="two-col mt1">
+        <div>
+          <h4>Female genotype possibilities</h4>
+          <ul style="font-size:0.82rem;">
+            <li>X<sup>B</sup>X<sup>B</sup> = homozygous dominant (normal)</li>
+            <li>X<sup>B</sup>X<sup>b</sup> = heterozygous carrier (normal phenotype, carries recessive)</li>
+            <li>X<sup>b</sup>X<sup>b</sup> = homozygous recessive (affected)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Male genotype possibilities</h4>
+          <ul style="font-size:0.82rem;">
+            <li>X<sup>B</sup>Y = normal</li>
+            <li>X<sup>b</sup>Y = affected (only one X, so recessive is expressed)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight red mt2">🔑 <strong>X-linked recessive diseases:</strong> Colorblindness, Hemophilia A, Duchenne Muscular Dystrophy. More common in males. Fathers pass X-linked genes to daughters, not sons. Mothers pass X-linked genes to both sons and daughters.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>📊 Determining Mode of Inheritance from Data</h3>
+      <table class="data-table">
+        <tr><th>Clue</th><th>What it suggests</th></tr>
+        <tr><td>Trait skips generations</td><td>Autosomal recessive</td></tr>
+        <tr><td>Trait appears in every generation</td><td>Autosomal dominant</td></tr>
+        <tr><td>Only males affected, mothers are carriers</td><td>X-linked recessive</td></tr>
+        <tr><td>Ratio 3:1 in F2</td><td>Simple dominance (Mendelian)</td></tr>
+        <tr><td>Ratio 1:2:1 in F2</td><td>Incomplete dominance or codominance</td></tr>
+        <tr><td>Ratio 9:3:3:1 in F2</td><td>Dihybrid cross, two independent genes</td></tr>
+        <tr><td>Affected father × unaffected mother → all daughters affected</td><td>X-linked dominant</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PEDIGREES -->
+  <div id="sub-genetics-pedigrees" class="sub-panel">
+    <div class="content-card">
+      <h3>🌳 Reading Pedigrees</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">A pedigree is a family tree showing which individuals are affected by a trait across generations.</p>
+      <div class="two-col mt1">
+        <div>
+          <h4>Symbols</h4>
+          <ul style="font-size:0.82rem;">
+            <li>⬜ Square = male, unaffected</li>
+            <li>⬛ Filled square = male, affected</li>
+            <li>⭕ Circle = female, unaffected</li>
+            <li>⬤ Filled circle = female, affected</li>
+            <li>⬤ with dot inside = carrier female</li>
+            <li>Horizontal line = mating pair</li>
+            <li>Vertical/diagonal line = offspring</li>
+            <li>Roman numerals = generations (I, II, III)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>How to determine inheritance pattern</h4>
+          <ol style="font-size:0.82rem;">
+            <li>Is it autosomal or X-linked? (Check if males or females are more affected)</li>
+            <li>Is it dominant or recessive? (Does it skip generations? Are unaffected carriers possible?)</li>
+            <li>If two unaffected parents have affected child → autosomal recessive</li>
+            <li>If affected father has all affected daughters → X-linked dominant</li>
+          </ol>
+        </div>
+      </div>
+      <div class="pedigree-svg mt2">
+        <svg viewBox="0 0 460 200" width="100%" style="max-height:200px;">
+          <!-- Generation I -->
+          <text x="10" y="60" fill="#9aa3b8" font-size="12">I</text>
+          <rect x="70" y="40" width="30" height="30" fill="none" stroke="#9aa3b8" stroke-width="2" rx="2"/>
+          <line x1="100" y1="55" x2="130" y2="55" stroke="#9aa3b8" stroke-width="1.5"/>
+          <circle cx="145" cy="55" r="15" fill="#ef4444" stroke="#ef4444" stroke-width="2"/>
+          <!-- Generation II -->
+          <text x="10" y="130" fill="#9aa3b8" font-size="12">II</text>
+          <line x1="115" y1="55" x2="115" y2="90" stroke="#9aa3b8" stroke-width="1.5"/>
+          <line x1="60" y1="90" x2="280" y2="90" stroke="#9aa3b8" stroke-width="1.5"/>
+          <rect x="45" y="105" width="30" height="30" fill="#ef4444" stroke="#ef4444" stroke-width="2" rx="2"/>
+          <circle cx="145" cy="120" r="15" fill="none" stroke="#9aa3b8" stroke-width="2"/>
+          <circle cx="145" cy="120" r="7" fill="#9aa3b8" opacity="0.5"/>
+          <rect x="205" y="105" width="30" height="30" fill="none" stroke="#9aa3b8" stroke-width="2" rx="2"/>
+          <line x1="60" y1="90" x2="60" y2="105" stroke="#9aa3b8" stroke-width="1.5"/>
+          <line x1="145" y1="90" x2="145" y2="105" stroke="#9aa3b8" stroke-width="1.5"/>
+          <line x1="220" y1="90" x2="220" y2="105" stroke="#9aa3b8" stroke-width="1.5"/>
+          <!-- Generation III -->
+          <text x="10" y="185" fill="#9aa3b8" font-size="12">III</text>
+          <line x1="220" y1="135" x2="270" y2="135" stroke="#9aa3b8" stroke-width="1.5"/>
+          <circle cx="285" cy="135" r="15" fill="none" stroke="#9aa3b8" stroke-width="2"/>
+          <line x1="220" y1="135" x2="220" y2="165" stroke="#9aa3b8" stroke-width="1.5"/>
+          <line x1="200" y1="165" x2="370" y2="165" stroke="#9aa3b8" stroke-width="1.5"/>
+          <rect x="185" y="170" width="30" height="25" fill="none" stroke="#9aa3b8" stroke-width="2" rx="2"/>
+          <circle cx="285" cy="182" r="12" fill="#ef4444" stroke="#ef4444" stroke-width="2"/>
+          <rect x="345" y="170" width="30" height="25" fill="none" stroke="#9aa3b8" stroke-width="2" rx="2"/>
+          <line x1="200" y1="165" x2="200" y2="170" stroke="#9aa3b8" stroke-width="1.5"/>
+          <line x1="285" y1="165" x2="285" y2="170" stroke="#9aa3b8" stroke-width="1.5"/>
+          <line x1="360" y1="165" x2="360" y2="170" stroke="#9aa3b8" stroke-width="1.5"/>
+          <!-- Labels -->
+          <text x="400" y="60" fill="#9aa3b8" font-size="10">Filled = affected</text>
+          <text x="400" y="75" fill="#9aa3b8" font-size="10">Dot = carrier</text>
+          <text x="400" y="90" fill="#ef4444" font-size="10">Pattern: Auto</text>
+          <text x="400" y="105" fill="#ef4444" font-size="10">Recessive</text>
+        </svg>
+      </div>
+      <div class="highlight orange mt2">🔎 In the pedigree above: Two unaffected parents (I) have an affected child (II-1) → must be <strong>autosomal recessive</strong>. Carrier mother (dot) passes the recessive allele. Grandparent (I-2 female) was affected, meaning she was homozygous recessive.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🧫 Gel Electrophoresis</h3>
+      <h4>What it does</h4>
+      <p style="font-size:0.85rem; line-height:1.7;">Separates DNA fragments (or proteins) by size using an electrical current through a gel matrix. Used for DNA fingerprinting, paternity testing, forensics, and identifying genetic mutations.</p>
+      <h4>How to read a gel</h4>
+      <div class="two-col mt1">
+        <div>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>DNA is <strong>negatively charged</strong> → migrates toward positive electrode (bottom)</li>
+            <li><strong>Smaller fragments travel farther</strong> (less resistance through gel)</li>
+            <li><strong>Larger fragments stay near the top</strong> (more resistance)</li>
+            <li>Ladder (standard) = known size reference fragments</li>
+            <li>Bands at same position = same size fragment</li>
+            <li>Matching banding pattern = genetic match</li>
+          </ul>
+        </div>
+        <div>
+          <div style="background: var(--bg3); border-radius: 8px; padding: 1rem; font-size: 0.8rem;">
+            <p style="text-align:center; color:var(--text2); margin-bottom:0.5rem;">Gel diagram (simplified)</p>
+            <svg viewBox="0 0 200 160" width="100%">
+              <!-- gel box -->
+              <rect x="10" y="20" width="180" height="130" fill="#1e2333" stroke="#2a3045" stroke-width="1"/>
+              <!-- negative pole -->
+              <text x="100" y="15" fill="#ef4444" font-size="10" text-anchor="middle">– (negative)</text>
+              <!-- positive pole -->
+              <text x="100" y="165" fill="#3b82f6" font-size="10" text-anchor="middle">+ (positive)</text>
+              <!-- Lane labels -->
+              <text x="30" y="35" fill="#9aa3b8" font-size="9" text-anchor="middle">Ladder</text>
+              <text x="75" y="35" fill="#9aa3b8" font-size="9" text-anchor="middle">Sample A</text>
+              <text x="125" y="35" fill="#9aa3b8" font-size="9" text-anchor="middle">Sample B</text>
+              <text x="170" y="35" fill="#9aa3b8" font-size="9" text-anchor="middle">Sample C</text>
+              <!-- Bands - Ladder -->
+              <rect x="18" y="42" width="24" height="5" fill="#22c55e" rx="1"/>
+              <rect x="18" y="58" width="24" height="5" fill="#22c55e" rx="1"/>
+              <rect x="18" y="80" width="24" height="5" fill="#22c55e" rx="1"/>
+              <rect x="18" y="108" width="24" height="5" fill="#22c55e" rx="1"/>
+              <!-- Sample A bands -->
+              <rect x="60" y="58" width="24" height="5" fill="#3b82f6" rx="1"/>
+              <rect x="60" y="108" width="24" height="5" fill="#3b82f6" rx="1"/>
+              <!-- Sample B bands -->
+              <rect x="111" y="42" width="24" height="5" fill="#3b82f6" rx="1"/>
+              <rect x="111" y="58" width="24" height="5" fill="#3b82f6" rx="1"/>
+              <!-- Sample C bands (matches A) -->
+              <rect x="157" y="58" width="24" height="5" fill="#a855f7" rx="1"/>
+              <rect x="157" y="108" width="24" height="5" fill="#a855f7" rx="1"/>
+              <!-- Arrow showing migration direction -->
+              <text x="5" y="95" fill="#9aa3b8" font-size="8">Large</text>
+              <text x="5" y="140" fill="#9aa3b8" font-size="8">Small</text>
+            </svg>
+            <p style="color:var(--accent-p); font-size:0.75rem; text-align:center; margin-top:0.25rem;">Sample A and C match! Same banding pattern.</p>
+          </div>
+        </div>
+      </div>
+      <div class="highlight mt2"><strong>Applications:</strong> Paternity testing (child's bands come from parents), forensic crime scene identification, diagnosing genetic diseases, confirming cloned organisms, RFLP analysis for genetic variation.</div>
+    </div>
+  </div>
+
+  <!-- GENETIC TECH -->
+  <div id="sub-genetics-tech" class="sub-panel">
+    <div class="content-card">
+      <h3>🔬 Genetic Technologies Overview</h3>
+      <p style="font-size:0.85rem; margin-bottom:1rem;">You need to know the basics of what each technology does and its applications — not the detailed mechanism.</p>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">PCR – Polymerase Chain Reaction <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Amplifies (makes millions of copies of) a specific DNA segment. <strong>How:</strong> Heat to separate strands, cool to attach primers, DNA polymerase extends. Repeated cycles = exponential copying. <strong>Uses:</strong> Crime scene forensics (tiny DNA sample), disease diagnosis, COVID-19 testing, ancestry analysis. <strong>Why it matters:</strong> Can work with extremely tiny amounts of DNA.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Gel Electrophoresis <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Separates DNA (or proteins) by size using electrical current through gel. <strong>Uses:</strong> DNA fingerprinting, paternity testing, forensics, genetic disease diagnosis. <strong>Key:</strong> Smaller fragments move farther; compare to a ladder of known sizes.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Recombinant DNA / Genetic Engineering <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Combining DNA from two different organisms. <strong>How:</strong> Use restriction enzymes to cut DNA at specific sequences, insert into a vector (plasmid), introduce into host cell. <strong>Uses:</strong> Insulin production (bacteria make human insulin), crops with pest resistance, bacteria that make enzymes. <strong>Result:</strong> Host cell expresses the foreign gene.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">GMOs – Genetically Modified Organisms <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Organisms with DNA from another species added to their genome. <strong>Examples:</strong> Bt corn (bacterial toxin gene → insect resistance), golden rice (Vitamin A gene), herbicide-resistant soybeans. <strong>Concerns:</strong> Unknown long-term effects, biodiversity, "superweeds." <strong>Benefits:</strong> Higher yields, disease resistance, nutritional improvement.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Cloning <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Creating a genetically identical copy of an organism. <strong>How (somatic cell nuclear transfer):</strong> Remove nucleus from egg cell, replace with nucleus from donor body cell, stimulate to divide, implant in surrogate. <strong>Examples:</strong> Dolly the sheep (first cloned mammal). <strong>Uses:</strong> Preserving endangered species, medical research. <strong>Ethical concerns:</strong> Reproductive vs. therapeutic cloning debate.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">CRISPR-Cas9 (Gene Editing) <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Precise "molecular scissors" that can cut, edit, or delete specific genes. <strong>Guide RNA</strong> directs Cas9 protein to the target DNA sequence. <strong>Uses:</strong> Correcting genetic diseases (sickle cell trials), agriculture, research. <strong>Concerns:</strong> Germline editing ethics (heritable changes), off-target effects.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">DNA Sequencing & Human Genome Project <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Determines the exact order of bases in a DNA molecule. <strong>Human Genome Project:</strong> Mapped all ~3 billion base pairs in human DNA (completed 2003). <strong>Applications:</strong> Understanding genetic diseases, personalized medicine, ancestry tracing, finding disease-causing genes.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Gene Therapy <span class="arrow">▼</span></div>
+        <div class="accordion-body"><strong>What:</strong> Inserting a functional gene into a patient's cells to treat a genetic disease. <strong>Example:</strong> Treating severe combined immunodeficiency (SCID). <strong>Challenge:</strong> Getting the gene into the right cells without immune rejection. Viral vectors often used as delivery systems.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EVOLUTION PAGE -->
+<div id="page-evolution" class="page">
+  <div class="section-header">
+    <h2>🦎 Evolution <span class="tag tag-blue">~25% of exam</span></h2>
+    <p>Darwin's theory, natural selection, types of selection, speciation, isolation, and human evolution — no need to memorize scientists or specific dates</p>
+  </div>
+
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('evolution','darwin')">Darwin & Natural Selection</button>
+    <button class="sub-tab" onclick="showSub('evolution','selection')">Types of Selection</button>
+    <button class="sub-tab" onclick="showSub('evolution','speciation')">Speciation & Isolation</button>
+    <button class="sub-tab" onclick="showSub('evolution','population')">Population Genetics</button>
+    <button class="sub-tab" onclick="showSub('evolution','cladograms')">Evolutionary Trees</button>
+    <button class="sub-tab" onclick="showSub('evolution','human')">Human Evolution</button>
+  </div>
+
+  <div id="sub-evolution-darwin" class="sub-panel active">
+    <div class="content-card">
+      <h3>🌍 Darwin's Theory of Evolution by Natural Selection</h3>
+      <div class="highlight purple">Natural selection = the process by which organisms with favorable traits survive and reproduce more successfully than those without, leading to changes in population over time.</div>
+      <h4>4 Key Observations / Postulates</h4>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5>1. Overproduction</h5>
+          <p>Organisms produce more offspring than can possibly survive. Competition for resources is inevitable.</p>
+        </div>
+        <div class="mini-card">
+          <h5>2. Variation</h5>
+          <p>Individuals in a population show heritable variation in traits. Without variation, there's nothing to select upon.</p>
+        </div>
+        <div class="mini-card">
+          <h5>3. Struggle for Existence</h5>
+          <p>Limited resources mean not all offspring survive. Competition happens within and between species.</p>
+        </div>
+        <div class="mini-card">
+          <h5>4. Survival of the Fittest</h5>
+          <p>Individuals with traits better suited to their environment survive and reproduce more → "fitness" = reproductive success, not physical strength.</p>
+        </div>
+        <div class="mini-card">
+          <h5>5. Inheritance</h5>
+          <p>Favorable traits are passed to offspring. Over generations, favorable traits become more common in the population.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Result: Adaptation</h5>
+          <p>Over many generations, populations become better adapted to their environment. Enough change = new species.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🦴 Evidence for Evolution</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Fossil Evidence</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li><strong>Transitional fossils</strong> show intermediate forms between ancestral and descendant species</li>
+            <li>Fossils in rock layers show change over time (older = deeper layers)</li>
+            <li>Gaps in the fossil record are expected — fossilization is rare</li>
+          </ul>
+          <h4>Biogeography</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Related species found in same geographic area (islands near continent)</li>
+            <li>Explains distribution of similar organisms on continents once connected</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Anatomical Evidence</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li><strong>Homologous structures:</strong> Same structure, different function → common ancestor (e.g., human arm, whale flipper, bat wing — all are modified forelimbs)</li>
+            <li><strong>Analogous structures:</strong> Different structure, same function → convergent evolution (e.g., bird wing vs. butterfly wing)</li>
+            <li><strong>Vestigial structures:</strong> Remnant of an ancestral structure no longer used (e.g., human tailbone, whale pelvis bones)</li>
+          </ul>
+          <h4>Molecular Evidence</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>DNA and protein sequences compared across species</li>
+            <li>More similar sequence = more closely related</li>
+            <li>Cytochrome c protein nearly identical in related species</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight green mt2">🔑 <strong>Key distinction:</strong> Homologous = same underlying structure (common ancestor). Analogous = same function but different structure (convergent evolution). Don't confuse these!</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🌱 Artificial Selection vs. Natural Selection</h3>
+      <div class="two-col mt1">
+        <div class="mini-card">
+          <h5>Artificial Selection (Selective Breeding)</h5>
+          <p>Humans choose which individuals reproduce based on desired traits. Examples: dog breeds, crop varieties, domesticated animals. Faster than natural selection but same mechanism — selecting favorable traits.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Natural Selection</h5>
+          <p>Environment (not humans) determines which individuals survive and reproduce. Acts on existing variation. Slower but produces adaptation to actual environmental conditions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-evolution-selection" class="sub-panel">
+    <div class="content-card">
+      <h3>📊 Three Patterns of Natural Selection</h3>
+      <p style="font-size:0.85rem; margin-bottom:1rem;">These describe which phenotypes in a population are selected for or against. Think about what happens to the bell curve of trait distribution.</p>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5 style="color:var(--accent-b)">Stabilizing Selection</h5>
+          <p>Extreme phenotypes are selected AGAINST. Middle (average) phenotype is favored. <strong>Result: LESS variation</strong>, population stays the same. Example: Human birth weight — very heavy and very light babies have lower survival rates.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-o)">Directional Selection</h5>
+          <p>One extreme phenotype is favored over the other. <strong>Result: population SHIFTS in one direction.</strong> Example: Antibiotic resistance — bacteria resistant to antibiotics survive and reproduce; population shifts toward resistance. Peppered moth during industrial revolution.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-p)">Disruptive Selection</h5>
+          <p>Both extreme phenotypes are favored; middle is selected against. <strong>Result: MORE variation</strong>, population may split into two groups. Example: Darwin's finches with large or small beaks outcompete medium-beak birds when seeds are either very large or very small.</p>
+        </div>
+      </div>
+      <div class="highlight orange mt2">📈 <strong>Tip for the exam:</strong> If asked which type of selection reduces variation → Stabilizing. Shifts the average → Directional. Creates two peaks/groups → Disruptive.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>💪 Biological Fitness</h3>
+      <ul>
+        <li>Fitness = an organism's ability to <strong>survive AND reproduce</strong> in its environment</li>
+        <li>NOT about physical strength — a weak organism that reproduces 10 times is more "fit" than a strong one that never reproduces</li>
+        <li>Fitness is always <strong>relative to the environment</strong> — what's fit in one environment may not be in another</li>
+        <li>Natural selection acts on phenotypes but selects the underlying genotypes</li>
+        <li>Fitness increases as beneficial traits increase in frequency across generations</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="sub-evolution-speciation" class="sub-panel">
+    <div class="content-card">
+      <h3>🌐 Speciation</h3>
+      <div class="highlight">A <strong>species</strong> = a group of organisms that can interbreed and produce fertile offspring. <strong>Speciation</strong> = the process by which new species form, usually through reproductive isolation.</div>
+      <div class="two-col mt2">
+        <div class="mini-card">
+          <h5>Biological Species Concept</h5>
+          <p>Species defined by ability to interbreed and produce fertile offspring in nature. Doesn't work for asexual organisms or fossils.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Evolutionary Species Concept</h5>
+          <p>Species defined by shared evolutionary lineage and unique ecological roles. Applies to fossils and asexual organisms too.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🚧 Reproductive Isolation Mechanisms</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">If two populations can't reproduce together, they evolve separately and may become different species. Two categories:</p>
+      <div class="two-col mt1">
+        <div>
+          <h4>Pre-zygotic (Before fertilization)</h4>
+          <table class="data-table">
+            <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+            <tr><td>Geographic</td><td>Physical barrier separates populations</td><td>Mountain range, river, ocean</td></tr>
+            <tr><td>Temporal</td><td>Breed at different times/seasons</td><td>Frogs mating in different months</td></tr>
+            <tr><td>Behavioral</td><td>Different mating displays/songs/signals</td><td>Firefly flash patterns, bird songs</td></tr>
+            <tr><td>Mechanical</td><td>Incompatible reproductive structures</td><td>Different flower shapes lock out wrong pollinators</td></tr>
+            <tr><td>Gametic</td><td>Sperm can't penetrate or fertilize egg</td><td>Chemical incompatibility of gametes</td></tr>
+          </table>
+        </div>
+        <div>
+          <h4>Post-zygotic (After fertilization)</h4>
+          <table class="data-table">
+            <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+            <tr><td>Zygote Mortality</td><td>Hybrid embryo doesn't develop</td><td>Cross-species embryos die early</td></tr>
+            <tr><td>Hybrid Inviability</td><td>Hybrid offspring not viable/survive poorly</td><td>Some frog hybrids die as larvae</td></tr>
+            <tr><td>Hybrid Sterility</td><td>Hybrid offspring survive but infertile</td><td>Mule (horse × donkey) = sterile</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>↔️ Convergent vs. Divergent Evolution</h3>
+      <div class="two-col mt1">
+        <div class="mini-card">
+          <h5>Convergent Evolution</h5>
+          <p>Unrelated species develop similar traits due to similar environmental pressures. Produces <strong>analogous structures</strong>. Example: Dolphins and sharks both have streamlined bodies and fins — but dolphins are mammals, sharks are fish. Same shape, different ancestry.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Divergent Evolution</h5>
+          <p>Related species evolve different traits as they adapt to different environments. Produces <strong>homologous structures</strong>. Example: Darwin's finches — one ancestor, many beak shapes based on food source. All are closely related but look/behave differently.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-evolution-population" class="sub-panel">
+    <div class="content-card">
+      <h3>🧬 Population Genetics: Forces of Evolution</h3>
+      <div class="cheat-grid mt1">
+        <div class="cheat-item"><div class="ci-term">Gene Flow</div><div class="ci-def">Movement of alleles between populations due to migration. Tends to make populations MORE SIMILAR. Reduces genetic differences between populations.</div></div>
+        <div class="cheat-item"><div class="ci-term">Genetic Drift</div><div class="ci-def">Random changes in allele frequency due to chance, especially in SMALL populations. NOT natural selection — random, not adaptive. Can eliminate alleles by chance.</div></div>
+        <div class="cheat-item"><div class="ci-term">Bottleneck Effect</div><div class="ci-def">Dramatic reduction in population size (disaster/hunting) → surviving population has LOW genetic diversity. Example: Cheetahs — genetically nearly identical due to ancient bottleneck.</div></div>
+        <div class="cheat-item"><div class="ci-term">Founder Effect</div><div class="ci-def">A small group leaves to start a new population. New population has LESS genetic diversity. Example: Amish community with high rate of rare genetic disorders due to small founding group.</div></div>
+        <div class="cheat-item"><div class="ci-term">Genetic Equilibrium (Hardy-Weinberg)</div><div class="ci-def">A population where allele frequencies DON'T change over time. Requires: no mutation, no migration, large population, random mating, no natural selection. Rarely occurs in nature — evolution is happening.</div></div>
+        <div class="cheat-item"><div class="ci-term">Mutation</div><div class="ci-def">Source of ALL new genetic variation. Without mutation, no new alleles. Provides the raw material for natural selection and evolution.</div></div>
+      </div>
+      <div class="highlight red mt2">⚠️ <strong>Genetic drift vs. Natural selection:</strong> Drift = random (small populations). Selection = non-random, adaptive (based on fitness). Both change allele frequencies but for different reasons.</div>
+    </div>
+  </div>
+
+  <div id="sub-evolution-cladograms" class="sub-panel">
+    <div class="content-card">
+      <h3>🌳 Reading Cladograms & Phylogenetic Trees</h3>
+      <p style="font-size:0.85rem; margin-bottom:0.75rem;">A cladogram shows evolutionary relationships based on shared derived characteristics. A phylogenetic tree adds time (branch length can = time or genetic change).</p>
+      <div class="tree-area mt2">
+        <svg viewBox="0 0 460 220" width="100%" style="max-height:220px;">
+          <!-- Main trunk -->
+          <line x1="40" y1="200" x2="40" y2="50" stroke="#3b82f6" stroke-width="2"/>
+          <!-- First split -->
+          <line x1="40" y1="120" x2="200" y2="120" stroke="#3b82f6" stroke-width="2"/>
+          <line x1="200" y1="120" x2="200" y2="50" stroke="#3b82f6" stroke-width="2"/>
+          <!-- Second split on right -->
+          <line x1="200" y1="80" x2="330" y2="80" stroke="#3b82f6" stroke-width="2"/>
+          <line x1="330" y1="80" x2="330" y2="50" stroke="#3b82f6" stroke-width="2"/>
+          <!-- Third split on right -->
+          <line x1="330" y1="65" x2="420" y2="65" stroke="#3b82f6" stroke-width="2"/>
+          <line x1="420" y1="65" x2="420" y2="50" stroke="#3b82f6" stroke-width="2"/>
+          <!-- Species labels -->
+          <text x="40" y="45" fill="#22c55e" font-size="11" text-anchor="middle">Lamprey</text>
+          <text x="200" y="45" fill="#22c55e" font-size="11" text-anchor="middle">Shark</text>
+          <text x="330" y="45" fill="#22c55e" font-size="11" text-anchor="middle">Salmon</text>
+          <text x="420" y="45" fill="#22c55e" font-size="11" text-anchor="middle">Frog</text>
+          <!-- Ancestral node dots -->
+          <circle cx="40" cy="120" r="5" fill="#a855f7"/>
+          <circle cx="200" cy="80" r="5" fill="#a855f7"/>
+          <circle cx="330" cy="65" r="5" fill="#a855f7"/>
+          <!-- Derived character marks -->
+          <rect x="110" y="112" width="70" height="16" fill="rgba(168,85,247,0.15)" rx="3"/>
+          <text x="145" y="124" fill="#a855f7" font-size="9" text-anchor="middle">Jaws (derived)</text>
+          <rect x="245" y="72" width="60" height="16" fill="rgba(59,130,246,0.15)" rx="3"/>
+          <text x="275" y="84" fill="#60a5fa" font-size="9" text-anchor="middle">Paired limbs</text>
+          <rect x="355" y="57" width="50" height="16" fill="rgba(34,197,94,0.15)" rx="3"/>
+          <text x="380" y="69" fill="#22c55e" font-size="9" text-anchor="middle">Tetrapod</text>
+          <!-- Root label -->
+          <text x="40" y="215" fill="#9aa3b8" font-size="10" text-anchor="middle">Common ancestor</text>
+          <line x1="40" y1="198" x2="40" y2="205" stroke="#9aa3b8" stroke-width="1" stroke-dasharray="3"/>
+          <!-- Reading guide -->
+          <text x="250" y="195" fill="#9aa3b8" font-size="9">Closer branch = more closely related</text>
+          <text x="250" y="208" fill="#9aa3b8" font-size="9">Node = common ancestor</text>
+        </svg>
+      </div>
+      <h4>How to read a cladogram</h4>
+      <ol style="font-size:0.85rem; line-height:1.8;">
+        <li>Species on the <strong>tips (branches)</strong> are the living/modern species being compared.</li>
+        <li><strong>Nodes</strong> (where branches split) represent common ancestors.</li>
+        <li>Two species that share a <strong>more recent common ancestor</strong> are more closely related.</li>
+        <li><strong>Derived characters</strong> (new traits) mark what separates groups — they're listed along the branches where they first appeared.</li>
+        <li>To find which two species are most closely related: find the node they share that is closest to the tips.</li>
+      </ol>
+      <div class="highlight orange mt2">📌 <strong>Exam tip:</strong> "Which two organisms are most closely related?" = Find the pair that shares the most recent (lowest on the tree / rightmost) common ancestor node.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>⏱️ Molecular Clock</h3>
+      <ul style="font-size:0.85rem; line-height:1.7;">
+        <li>The idea that mutations accumulate in DNA at a roughly constant rate over time.</li>
+        <li>More DNA differences = more time since common ancestor = less related.</li>
+        <li>Used to estimate when species diverged (split from a common ancestor).</li>
+        <li>Example: Comparing cytochrome c protein sequences across species to build evolutionary trees.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="sub-evolution-human" class="sub-panel">
+    <div class="content-card">
+      <h3>🦴 Human Evolution — Key Adaptations</h3>
+      <div class="highlight purple">The exam may ask: What evolutionary changes allowed humans to become the dominant species? Focus on: bipedalism, brain size, tool use, and language.</div>
+      <div class="two-col mt2">
+        <div>
+          <h4>Bipedalism (Walking Upright)</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Freeing of hands for tool use and carrying</li>
+            <li>Evidence in skeleton: S-curved spine, wider pelvis, angled femur (thigh bone angles inward), feet with arch and non-opposable big toe</li>
+            <li>Foramen magnum (hole at base of skull) directly underneath skull in bipeds — on the back in quadrupeds</li>
+            <li>Knee joint angle differs from quadruped knee</li>
+          </ul>
+          <h4>Brain Development</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Skull volume (cranial capacity) increased dramatically over hominid evolution</li>
+            <li>Larger, more complex brain → higher cognitive function, language, problem solving</li>
+            <li>Smaller brow ridges, larger braincase, flatter face over time in fossil record</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Tool Use & Cultural Evolution</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Tool use accelerated human success beyond biological evolution</li>
+            <li>Allowed humans to hunt larger animals, process food, build shelter</li>
+            <li>Language and communication allowed cultural transmission of knowledge</li>
+            <li>Fire use enabled cooking → more calorie-dense food → supported large brain</li>
+          </ul>
+          <h4>Global Migration</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Originated in Africa (fossil evidence, DNA evidence)</li>
+            <li>Migrated out of Africa to populate all continents</li>
+            <li>Reached all habitable continents by ~15,000 years ago</li>
+            <li>Language, social cooperation, tools enabled survival in diverse environments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>📊 Hominid Trends (What the Data Shows)</h3>
+      <table class="data-table">
+        <tr><th>Trait</th><th>Earlier Hominids</th><th>Modern Humans</th></tr>
+        <tr><td>Cranial capacity (brain size)</td><td>Smaller (400–600 cc)</td><td>Larger (~1400 cc)</td></tr>
+        <tr><td>Face profile</td><td>Prognathic (protruding jaw)</td><td>Flatter, orthognathic</td></tr>
+        <tr><td>Brow ridges</td><td>Heavy, prominent</td><td>Reduced or absent</td></tr>
+        <tr><td>Posture</td><td>More stooped/forward-leaning</td><td>Fully erect, S-curve spine</td></tr>
+        <tr><td>Foramen magnum position</td><td>More posterior</td><td>Directly inferior (underneath)</td></tr>
+        <tr><td>Tool complexity</td><td>Simple stone tools</td><td>Complex, varied tools</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ECOLOGY PAGE -->
+<div id="page-ecology" class="page">
+  <div class="section-header">
+    <h2>🌿 Ecology <span class="tag tag-blue">~25% of exam</span></h2>
+    <p>Focus on interpreting graphs, human impacts, biomagnification, deforestation, greenhouse effect, overexploitation, and conservation</p>
+  </div>
+
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('ecology','basics')">Ecosystem Basics</button>
+    <button class="sub-tab" onclick="showSub('ecology','food')">Food Webs & Energy</button>
+    <button class="sub-tab" onclick="showSub('ecology','population')">Population Dynamics</button>
+    <button class="sub-tab" onclick="showSub('ecology','human')">Human Impacts</button>
+    <button class="sub-tab" onclick="showSub('ecology','graphs')">Reading Graphs</button>
+  </div>
+
+  <div id="sub-ecology-basics" class="sub-panel active">
+    <div class="content-card">
+      <h3>🔭 Levels of Ecological Organization</h3>
+      <div class="cheat-grid mt1">
+        <div class="cheat-item"><div class="ci-term">Organism</div><div class="ci-def">A single individual (one deer, one oak tree)</div></div>
+        <div class="cheat-item"><div class="ci-term">Population</div><div class="ci-def">All members of the SAME species in an area (all deer in a forest)</div></div>
+        <div class="cheat-item"><div class="ci-term">Community</div><div class="ci-def">All different species in an area interacting (deer + wolves + trees + bacteria)</div></div>
+        <div class="cheat-item"><div class="ci-term">Ecosystem</div><div class="ci-def">Community PLUS the abiotic (nonliving) environment (soil, water, sunlight, temperature)</div></div>
+        <div class="cheat-item"><div class="ci-term">Biome</div><div class="ci-def">Large geographic area with characteristic climate and organisms (tropical rainforest, tundra, desert)</div></div>
+        <div class="cheat-item"><div class="ci-term">Biosphere</div><div class="ci-def">All living things and their environments on Earth — the global ecosystem</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🌿 Ecological Roles</h3>
+      <table class="data-table mt1">
+        <tr><th>Role</th><th>What they do</th><th>Examples</th></tr>
+        <tr><td>Producers (Autotrophs)</td><td>Make their own food via photosynthesis; base of all food chains</td><td>Plants, algae, cyanobacteria</td></tr>
+        <tr><td>Primary Consumers (Herbivores)</td><td>Eat producers directly</td><td>Deer, caterpillars, rabbits, grasshoppers</td></tr>
+        <tr><td>Secondary Consumers (Carnivores)</td><td>Eat primary consumers</td><td>Frogs, small fish, foxes</td></tr>
+        <tr><td>Tertiary Consumers</td><td>Eat secondary consumers</td><td>Hawks, large fish, wolves</td></tr>
+        <tr><td>Detritivores</td><td>Eat dead organic matter</td><td>Earthworms, millipedes, dung beetles</td></tr>
+        <tr><td>Decomposers</td><td>Break down dead matter to inorganic nutrients (cycling!)</td><td>Bacteria, fungi</td></tr>
+        <tr><td>Scavengers</td><td>Eat dead animals</td><td>Vultures, crows, hyenas</td></tr>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <h3>🤝 Types of Symbiosis</h3>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5 style="color:var(--accent-g)">Mutualism (+/+)</h5>
+          <p>BOTH species benefit. Example: Bees and flowers (bee gets nectar, flower gets pollinated). Clownfish and sea anemone. Nitrogen-fixing bacteria in legume roots.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-b)">Commensalism (+/0)</h5>
+          <p>One species benefits, the other is UNAFFECTED. Example: Barnacles on a whale (barnacles get transport, whale is unaffected). Remora fish on sharks.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-r)">Parasitism (+/−)</h5>
+          <p>One species benefits, the other is HARMED (but usually not killed quickly). Example: Tapeworms in host intestines. Ticks on deer. Mistletoe on trees.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-ecology-food" class="sub-panel">
+    <div class="content-card">
+      <h3>🌱 Food Chains, Food Webs & Trophic Levels</h3>
+      <div class="highlight">A <strong>food chain</strong> shows one path of energy flow. A <strong>food web</strong> shows ALL possible feeding relationships in an ecosystem — more realistic, more complex.</div>
+      <h4>10% Rule of Energy Transfer</h4>
+      <div class="highlight orange mt1">Only about <strong>10% of energy</strong> is passed from one trophic level to the next. The other 90% is lost as heat (respiration), waste, or not consumed. This is why food chains rarely have more than 4–5 levels — not enough energy remains.</div>
+      <div class="two-col mt2">
+        <div>
+          <h4>Ecological Pyramids</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li><strong>Energy pyramid:</strong> Always wide at bottom (producers), narrows going up. Shows 10% energy transfer. Can NEVER be inverted.</li>
+            <li><strong>Biomass pyramid:</strong> Usually wide at bottom. Shows mass of organisms at each level. Can occasionally be inverted (e.g., phytoplankton vs. zooplankton).</li>
+            <li><strong>Numbers pyramid:</strong> Can be inverted (one oak tree supports thousands of insects).</li>
+          </ul>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 180" width="100%">
+            <polygon points="100,20 150,60 50,60" fill="rgba(239,68,68,0.3)" stroke="#ef4444" stroke-width="1"/>
+            <polygon points="50,60 160,60 170,100 30,100" fill="rgba(249,115,22,0.3)" stroke="#f97316" stroke-width="1"/>
+            <polygon points="30,100 170,100 185,140 15,140" fill="rgba(234,179,8,0.3)" stroke="#eab308" stroke-width="1"/>
+            <polygon points="15,140 185,140 200,175 0,175" fill="rgba(34,197,94,0.3)" stroke="#22c55e" stroke-width="1"/>
+            <text x="100" y="47" fill="#ef4444" font-size="9" text-anchor="middle">Tertiary (1 kcal)</text>
+            <text x="100" y="85" fill="#f97316" font-size="9" text-anchor="middle">Secondary (10 kcal)</text>
+            <text x="100" y="124" fill="#eab308" font-size="9" text-anchor="middle">Primary (100 kcal)</text>
+            <text x="100" y="162" fill="#22c55e" font-size="9" text-anchor="middle">Producers (1000 kcal)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔑 Keystone Species & Trophic Cascade</h3>
+      <div class="two-col mt1">
+        <div class="mini-card">
+          <h5>Keystone Species</h5>
+          <p>A species that has a disproportionately large effect on its ecosystem relative to its abundance. Remove it → ecosystem dramatically changes or collapses. Example: Sea otters control sea urchin populations → protect kelp forests. Wolves in Yellowstone (trophic cascade).</p>
+        </div>
+        <div class="mini-card">
+          <h5>Trophic Cascade</h5>
+          <p>When removing one species causes a chain reaction through the food web. Example: Remove wolves → deer overpopulate → overgrazing → vegetation destroyed → soil erosion → rivers change. Adding wolves back reverses all these effects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-ecology-population" class="sub-panel">
+    <div class="content-card">
+      <h3>📈 Population Growth Patterns</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Exponential Growth (J-curve)</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Population grows at an ever-increasing rate</li>
+            <li>Occurs when resources are unlimited</li>
+            <li>Produces a J-shaped curve</li>
+            <li>Population size is not limited by carrying capacity</li>
+            <li>Common in: bacteria, organisms in new environments, invasive species</li>
+          </ul>
+          <h4>Logistic Growth (S-curve / sigmoidal)</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Growth slows as population approaches carrying capacity (K)</li>
+            <li>Produces an S-shaped curve</li>
+            <li>Growth is fast when population is small, slows as resources become limiting</li>
+            <li>More realistic model for most populations</li>
+          </ul>
+        </div>
+        <div>
+          <svg viewBox="0 0 200 180" width="100%">
+            <!-- Axes -->
+            <line x1="20" y1="160" x2="190" y2="160" stroke="#2a3045" stroke-width="1.5"/>
+            <line x1="20" y1="10" x2="20" y2="160" stroke="#2a3045" stroke-width="1.5"/>
+            <text x="100" y="175" fill="#9aa3b8" font-size="9" text-anchor="middle">Time</text>
+            <text x="10" y="90" fill="#9aa3b8" font-size="9" text-anchor="middle" transform="rotate(-90,10,90)">Population</text>
+            <!-- Carrying capacity line -->
+            <line x1="20" y1="60" x2="190" y2="60" stroke="#9aa3b8" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="193" y="63" fill="#9aa3b8" font-size="8">K</text>
+            <!-- Exponential (J) curve -->
+            <path d="M20,155 Q80,150 120,130 T190,15" fill="none" stroke="#ef4444" stroke-width="2"/>
+            <text x="155" y="25" fill="#ef4444" font-size="9">J-curve</text>
+            <!-- Logistic (S) curve -->
+            <path d="M20,155 Q60,152 90,110 Q120,70 140,63 T190,60" fill="none" stroke="#22c55e" stroke-width="2"/>
+            <text x="148" y="55" fill="#22c55e" font-size="9">S-curve</text>
+          </svg>
+        </div>
+      </div>
+      <div class="highlight mt2">📌 <strong>Carrying capacity (K)</strong> = the maximum population size an environment can sustainably support. Determined by food, water, space, and other resources. Logistic growth levels off AT carrying capacity.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>⚖️ Limiting Factors</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Density-Dependent Factors</h4>
+          <p style="font-size:0.82rem; margin-bottom:0.4rem;">Effect increases as population DENSITY increases.</p>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Food competition</li>
+            <li>Disease (spreads faster in crowded populations)</li>
+            <li>Predation (more prey = more predators)</li>
+            <li>Parasitism</li>
+            <li>Intraspecific competition</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Density-Independent Factors</h4>
+          <p style="font-size:0.82rem; margin-bottom:0.4rem;">Effect is the same regardless of population density.</p>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Natural disasters (hurricanes, floods)</li>
+            <li>Extreme temperature/weather</li>
+            <li>Drought or flooding</li>
+            <li>Human activities (pollution, habitat destruction)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>📊 Survivorship Curves</h3>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5 style="color:var(--accent-b)">Type I (Convex)</h5>
+          <p>Most individuals survive to old age, then die rapidly. Examples: <strong>Humans, elephants, large mammals</strong>. Few offspring, high parental care. K-selected species.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-y)">Type II (Diagonal/Linear)</h5>
+          <p>Constant mortality rate throughout life — equal chance of dying at any age. Examples: <strong>Birds, squirrels, some reptiles</strong>. Moderate offspring number.</p>
+        </div>
+        <div class="mini-card">
+          <h5 style="color:var(--accent-r)">Type III (Concave)</h5>
+          <p>Most individuals die young, but survivors live long. Examples: <strong>Fish, oysters, sea turtles, plants</strong>. Many offspring, little parental care. R-selected species.</p>
+        </div>
+      </div>
+      <div class="highlight mt2">🔑 <strong>r vs K species:</strong> r-selected = many offspring, little care, short life, exponential growth (Type III curve). K-selected = few offspring, high care, long life, logistic growth (Type I curve).</div>
+    </div>
+
+    <div class="content-card">
+      <h3>👥 Age Structure Diagrams (Population Pyramids)</h3>
+      <div class="two-col mt1">
+        <div class="mini-card">
+          <h5>Wide Base (Expanding – LDC)</h5>
+          <p>Many young people, fewer old. Found in Less Developed Countries (LDCs). Indicates RAPID POPULATION GROWTH. High birth rate, high death rate among elderly. Example: Many African and Asian countries.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Narrow Base (Stable/Shrinking – MDC)</h5>
+          <p>More uniform age distribution, or narrower base. Found in More Developed Countries (MDCs). Indicates stable or declining population. Low birth rate, lower death rate. Example: Germany, Japan, Italy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-ecology-human" class="sub-panel">
+    <div class="content-card">
+      <h3>☠️ Biomagnification & Bioaccumulation</h3>
+      <div class="highlight red"><strong>These are HIGH-PRIORITY exam topics — know the difference!</strong></div>
+      <div class="two-col mt2">
+        <div class="mini-card">
+          <h5>Bioaccumulation</h5>
+          <p>The buildup of a toxic substance in a SINGLE ORGANISM's tissues over time (usually fat-soluble toxins that aren't easily broken down). Example: A fish absorbs mercury from water over its lifetime → mercury builds up in its tissues.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Biomagnification</h5>
+          <p>The INCREASING concentration of toxins at each trophic level as you move UP the food chain. Because organisms at higher levels eat many organisms below them, they concentrate the toxin further. Top predators are most affected.</p>
+        </div>
+      </div>
+      <div class="highlight orange mt2">📌 <strong>Classic example: DDT & Bald Eagles</strong><br>
+      Plankton absorb small amounts of DDT from water → Small fish eat many plankton → accumulate more DDT → Large fish eat many small fish → Bald eagle eats many large fish → MASSIVE DDT concentration → Thin eggshells → Near extinction of eagles.<br><br>
+      <strong>Concentration increase:</strong> Water: 0.000003 ppm → Plankton: 0.04 ppm → Small fish: 0.5 ppm → Large fish: 2 ppm → Eagles: 25 ppm (over 8 million times more concentrated!)</div>
+      <div class="highlight yellow mt2">⚠️ <strong>Toxins that biomagnify:</strong> PCBs, DDT, mercury (methylmercury), lead, dioxins. These are fat-soluble, persistent (don't break down), and accumulate in fatty tissues.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🌡️ Greenhouse Effect & Global Climate Change</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Natural Greenhouse Effect (Good!)</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Greenhouse gases (CO₂, H₂O, CH₄, N₂O) trap heat in the atmosphere</li>
+            <li>Without it, Earth's average temp would be -18°C (0°F) — too cold for life</li>
+            <li>Sunlight enters → absorbed by Earth → radiated as heat → GHGs trap some heat → Earth stays warm</li>
+          </ul>
+          <h4>Enhanced Greenhouse Effect (Problem!)</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Human activities add excess GHGs → trap more heat than normal → global warming</li>
+            <li><strong>CO₂:</strong> Burning fossil fuels (cars, factories, power plants), deforestation</li>
+            <li><strong>Methane (CH₄):</strong> Livestock, landfills, rice paddies, natural gas</li>
+            <li><strong>Nitrous oxide:</strong> Fertilizers, agriculture</li>
+            <li><strong>Chlorofluorocarbons (CFCs):</strong> Old refrigerants, aerosols → also destroy ozone</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Effects of Global Climate Change</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Rising global average temperatures</li>
+            <li>Melting polar ice and glaciers → rising sea levels</li>
+            <li>More extreme weather events (hurricanes, droughts, floods)</li>
+            <li>Ocean acidification (CO₂ dissolves in water → carbonic acid)</li>
+            <li>Disruption of seasonal patterns → affects migration and reproduction</li>
+            <li>Habitat loss → biodiversity loss → species extinction</li>
+            <li>Coral bleaching due to warming oceans</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🌳 Deforestation & Its Effects</h3>
+      <div class="three-col mt1">
+        <div class="mini-card">
+          <h5>Carbon Cycle Disruption</h5>
+          <p>Trees store carbon in biomass. Cutting trees releases CO₂ back to atmosphere. Fewer trees = less CO₂ absorbed. Double impact: releases stored carbon AND removes carbon sink.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Water Cycle Disruption</h5>
+          <p>Trees release water vapor through transpiration. Deforestation reduces local rainfall, disrupts water cycles, increases flooding and erosion (no roots to hold soil), reduces groundwater recharge.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Biodiversity Loss</h5>
+          <p>Tropical rainforests hold ~50% of Earth's species. Destroying habitat → extinction of species, many before discovered. Loss of potential medicines, food sources, and ecosystem services.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Soil Degradation</h5>
+          <p>Rainforest soil is thin and nutrient-poor. Most nutrients are in the living biomass. Without trees, soil erodes rapidly → desertification → land can no longer support agriculture.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Climate Feedback Loop</h5>
+          <p>Deforestation → more CO₂ → warmer temps → more forest fires → more CO₂ → positive feedback loop that accelerates climate change.</p>
+        </div>
+        <div class="mini-card">
+          <h5>Indigenous Impact</h5>
+          <p>Destroys habitats of indigenous peoples, disrupts traditional food systems, affects communities dependent on forest resources.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🎯 Overexploitation & Tragedy of the Commons</h3>
+      <div class="highlight purple"><strong>Tragedy of the Commons:</strong> When a shared resource is available to all, each individual is incentivized to use as much as possible for personal gain, even though overuse destroys the resource for everyone. The "rational" individual choice leads to collective ruin.</div>
+      <div class="two-col mt2">
+        <div>
+          <h4>Examples of Overexploitation</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Overfishing → collapse of fish populations (Atlantic cod, bluefin tuna)</li>
+            <li>Hunting large mammals to near-extinction (rhinos, elephants for ivory)</li>
+            <li>Overharvesting of timber, wild plants</li>
+            <li>Overgrazing by livestock → desertification</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Solutions / Conservation Approaches</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Fishing quotas and catch limits</li>
+            <li>Marine protected areas and wildlife refuges</li>
+            <li>International agreements (CITES for endangered species trade)</li>
+            <li>Community-based management of shared resources</li>
+            <li>Consumer choices (sustainable seafood certification)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h3>🌍 Why Conservation Matters</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Direct values of biodiversity</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li><strong>Medical:</strong> 25% of pharmaceuticals come from plants (aspirin from willow, penicillin from fungus)</li>
+            <li><strong>Agricultural:</strong> Wild plants provide genetic diversity for crop improvement</li>
+            <li><strong>Economic:</strong> Ecotourism, fishing, timber, agriculture</li>
+            <li><strong>Scientific:</strong> Understanding ecosystems helps us manage them</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Ecosystem Services (Indirect)</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Air and water purification</li>
+            <li>Carbon sequestration (storing CO₂)</li>
+            <li>Pollination of crops (bees, butterflies)</li>
+            <li>Nutrient cycling</li>
+            <li>Flood control by wetlands</li>
+            <li>Soil stabilization by plants</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight green mt2">💡 <strong>Biodiversity has three levels:</strong> Species diversity (number of different species), Genetic diversity (variety within species), Ecosystem diversity (variety of habitats). Losing any level weakens overall resilience.</div>
+    </div>
+
+    <div class="content-card">
+      <h3>🔬 Other Human Impacts</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Ozone Depletion</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Ozone (O₃) in stratosphere blocks harmful UV radiation</li>
+            <li><strong>CFCs</strong> (chlorofluorocarbons) break down ozone molecules</li>
+            <li>Ozone hole over Antarctica detected in 1980s</li>
+            <li>More UV → increased skin cancer, cataracts, damage to marine phytoplankton</li>
+            <li>Montreal Protocol (1987) banned CFCs → ozone slowly recovering</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Acid Rain / Acid Deposition</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Burning fossil fuels releases SO₂ and NO₂</li>
+            <li>Combine with water vapor → sulfuric and nitric acids</li>
+            <li>Falls as acid rain (pH 4–5 instead of normal 5.6)</li>
+            <li>Effects: kills fish and aquatic life, damages forests, corrodes buildings</li>
+            <li>Crosses national borders (e.g., US emissions affect Canadian lakes)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight yellow mt2"><strong>Eutrophication:</strong> Excess nutrients (nitrogen, phosphorus from fertilizer runoff) enter water → algae bloom → algae die → bacteria decompose them → bacteria use up all oxygen → <strong>dead zone</strong> (hypoxic zone). No oxygen = no fish. Example: Gulf of Mexico dead zone from Mississippi River agricultural runoff.</div>
+    </div>
+  </div>
+
+  <div id="sub-ecology-graphs" class="sub-panel">
+    <div class="content-card">
+      <h3>📊 Interpreting Ecology Graphs — Exam Tips</h3>
+      <div class="two-col mt1">
+        <div>
+          <h4>Predator-Prey Graphs</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Prey population peaks BEFORE predator population (predators lag behind prey)</li>
+            <li>When prey increases → more food for predators → predators increase</li>
+            <li>When predators increase → more prey eaten → prey decreases</li>
+            <li>When prey decreases → predators starve → predators decrease</li>
+            <li>Classic oscillating (wave) pattern on graph</li>
+          </ul>
+          <h4>Population Growth</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>J-curve = exponential growth (unlimited resources)</li>
+            <li>S-curve = logistic growth (resource limits)</li>
+            <li>Leveling off = at or near carrying capacity</li>
+            <li>Sudden drop = limiting factor applied (disease, predator, disaster)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Energy/Biomass Pyramids</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Wide base = producers (most energy/biomass)</li>
+            <li>Each level = 10% of energy from level below</li>
+            <li>If 10,000 kcal in producers → 1,000 in herbivores → 100 in carnivores → 10 in top predator</li>
+            <li>WHY less energy at each level: heat loss from respiration, waste, incomplete consumption</li>
+          </ul>
+          <h4>Biomagnification Graph</h4>
+          <ul style="font-size:0.82rem; line-height:1.7;">
+            <li>Toxin concentration INCREASES going up food chain</li>
+            <li>Even if water has tiny amount, top predator accumulates huge dose</li>
+            <li>Graph usually shows exponential increase up trophic levels</li>
+          </ul>
+        </div>
+      </div>
+      <div class="highlight mt2">📌 <strong>Key graph interpretation skills:</strong>
+        <ul style="font-size:0.82rem; line-height:1.7; padding-left:1.25rem; margin-top:0.4rem;">
+          <li>Identify independent variable (x-axis) and dependent variable (y-axis)</li>
+          <li>Identify trends (increasing, decreasing, cyclical, leveling off)</li>
+          <li>Identify the cause of any sudden changes (usually a specific ecological event)</li>
+          <li>Compare multiple lines on the same graph (predator vs. prey, two species)</li>
+          <li>Calculate percentage change or ratios when asked</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div id="page-flashcards" class="page">
+  <div class="section-header">
+    <h2>🃏 Flashcards</h2>
+    <p>Click the card to flip and reveal the definition. Use the arrows to navigate.</p>
+  </div>
+
+  <div class="quiz-controls">
+    <select id="fc-category" onchange="loadFlashcards()">
+      <option value="all">All Topics</option>
+      <option value="genetics">Genetics</option>
+      <option value="evolution">Evolution</option>
+      <option value="ecology">Ecology</option>
+    </select>
+    <button class="secondary" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+  </div>
+
+  <div class="flashcard-container">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="front" id="fc-front">Loading...</div>
+      <div class="back" id="fc-back">Loading...</div>
+      <div class="flip-hint">Click to flip</div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button onclick="prevCard()">← Prev</button>
+    <div class="fc-counter" id="fc-counter">1 / 1</div>
+    <button onclick="nextCard()">Next →</button>
+  </div>
+</div>
+
+<!-- SHORT QUIZ -->
+<div id="page-quiz" class="page">
+  <div class="section-header">
+    <h2>✏️ Practice Quiz</h2>
+    <p>Select a topic and take a focused 10-question quiz with instant feedback</p>
+  </div>
+
+  <div class="quiz-controls">
+    <select id="quiz-topic" onchange="generateQuiz()">
+      <option value="all">All Topics (Mixed)</option>
+      <option value="genetics">Genetics</option>
+      <option value="evolution">Evolution</option>
+      <option value="ecology">Ecology</option>
+    </select>
+    <button onclick="generateQuiz()">🔄 New Quiz</button>
+  </div>
+
+  <div id="quiz-container"></div>
+  <button class="quiz-submit" id="quiz-submit-btn" onclick="gradeQuiz()" style="display:none">Submit Answers</button>
+  <div class="quiz-score" id="quiz-score-box">
+    <div class="score-num" id="quiz-score-num"></div>
+    <div class="score-msg" id="quiz-score-msg"></div>
+    <button onclick="generateQuiz()" style="margin-top:1rem; background:var(--accent-b); color:white; border:none; padding:0.5rem 1.5rem; border-radius:6px; cursor:pointer; font-weight:600;">Try Another Quiz</button>
+  </div>
+</div>
+
+<!-- LONG QUIZ -->
+<div id="page-longquiz" class="page">
+  <div class="section-header">
+    <h2>📝 Full Practice Exam (50 Questions)</h2>
+    <p>A comprehensive timed exam covering all topics — just like the real thing</p>
+  </div>
+
+  <div id="longquiz-start" style="text-align:center; padding: 2rem;">
+    <div class="content-card" style="max-width:500px; margin:0 auto;">
+      <h3>📋 Exam Information</h3>
+      <table class="data-table mt2">
+        <tr><td>Total Questions</td><td>50</td></tr>
+        <tr><td>Time Limit</td><td>None (self-paced)</td></tr>
+        <tr><td>Topics</td><td>Genetics (40%), Evolution (30%), Ecology (30%)</td></tr>
+        <tr><td>Feedback</td><td>After submission</td></tr>
+      </table>
+      <button onclick="startLongQuiz()" style="margin-top:1.5rem; background:var(--accent-g); color:#0f1117; border:none; padding:0.75rem 2.5rem; border-radius:8px; cursor:pointer; font-size:1rem; font-weight:700; width:100%;">Begin Exam</button>
+    </div>
+  </div>
+
+  <div id="longquiz-container" style="display:none">
+    <div class="progress-bar"><div class="progress-fill" id="lq-progress" style="width:0%"></div></div>
+    <div id="longquiz-questions"></div>
+    <button class="quiz-submit" onclick="gradeLongQuiz()">Submit Full Exam</button>
+    <div class="quiz-score" id="longquiz-score-box">
+      <div class="score-num" id="lq-score-num"></div>
+      <div class="score-msg" id="lq-score-msg"></div>
+      <div id="lq-breakdown" style="margin-top:1rem; font-size:0.85rem; text-align:left; max-width:400px; margin-left:auto; margin-right:auto;"></div>
+      <button onclick="startLongQuiz()" style="margin-top:1rem; background:var(--accent-b); color:white; border:none; padding:0.5rem 1.5rem; border-radius:6px; cursor:pointer; font-weight:600;">Retake Exam</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== NAVIGATION =====
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navBtns = document.querySelectorAll('nav button');
+  navBtns.forEach(b => { if (b.textContent.toLowerCase().includes(name) || (name === 'home' && b.textContent === 'Home')) b.classList.add('active'); });
+  window.scrollTo(0, 0);
+}
+
+function showSub(page, panel) {
+  document.querySelectorAll('#page-' + page + ' .sub-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#page-' + page + ' .sub-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sub-' + page + '-' + panel).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+// ===== FLASHCARDS =====
+const allFlashcards = [
+  // GENETICS
+  {cat:'genetics', q:'What are the 3 components of a nucleotide?', a:'A phosphate group, a 5-carbon sugar (deoxyribose in DNA, ribose in RNA), and a nitrogenous base (A, T, G, C in DNA; A, U, G, C in RNA)'},
+  {cat:'genetics', q:'What enzyme unwinds the DNA double helix during replication?', a:'Helicase — it breaks the hydrogen bonds between base pairs to separate the two strands'},
+  {cat:'genetics', q:'What is semiconservative replication?', a:'Each new DNA molecule contains one original (conserved) strand and one newly synthesized strand. The "template" strand is retained in each daughter molecule.'},
+  {cat:'genetics', q:'What does DNA polymerase do?', a:'Reads the template strand 3\'→5\' and adds new complementary nucleotides, building the new strand in the 5\'→3\' direction. Also proofreads for errors.'},
+  {cat:'genetics', q:'What is the start codon and what amino acid does it code for?', a:'AUG — it codes for Methionine (Met). Every protein begins with methionine at the ribosome.'},
+  {cat:'genetics', q:'What are the 3 stop codons?', a:'UAA, UAG, and UGA. They don\'t code for any amino acid — instead, they signal the ribosome to stop translation and release the polypeptide.'},
+  {cat:'genetics', q:'What is the difference between transcription and translation?', a:'Transcription: DNA → mRNA (in nucleus, using RNA polymerase). Translation: mRNA → protein (at ribosome, using tRNA and rRNA). DNA→RNA→Protein is the Central Dogma.'},
+  {cat:'genetics', q:'What type of mutation is MOST damaging and why?', a:'Frameshift mutations (insertion or deletion of bases not in multiples of 3) — they shift the reading frame, changing EVERY amino acid coded after the mutation point, usually making a non-functional protein.'},
+  {cat:'genetics', q:'What is a missense mutation?', a:'A point mutation where one base is changed, resulting in a DIFFERENT amino acid being coded. May alter protein function. Example: sickle cell disease (Glu→Val in hemoglobin).'},
+  {cat:'genetics', q:'What is a silent/neutral mutation?', a:'A base change that results in the SAME amino acid being coded (due to genetic code redundancy). No change in protein → no change in phenotype. Has no effect on fitness.'},
+  {cat:'genetics', q:'What is codominance?', a:'Both alleles are FULLY expressed in the heterozygote — neither is dominant or recessive. Example: Blood type AB (both A and B antigens on red blood cells simultaneously).'},
+  {cat:'genetics', q:'What is incomplete dominance?', a:'Neither allele is fully dominant — the heterozygote shows a BLENDED intermediate phenotype. Example: Red (RR) × White (R\'R\') → Pink (RR\') offspring in snapdragons.'},
+  {cat:'genetics', q:'What blood type is the universal donor? Universal recipient?', a:'O is the universal donor (has no antigens, won\'t trigger immune response). AB is the universal recipient (has no antibodies in plasma, accepts all blood types).'},
+  {cat:'genetics', q:'Why are X-linked recessive diseases more common in males?', a:'Males have only one X chromosome (XY) — if they inherit the recessive allele on their X, they express the trait. Females need two recessive alleles (XX) because one normal X can mask the recessive.'},
+  {cat:'genetics', q:'How do you determine if a trait is autosomal recessive from a pedigree?', a:'Two unaffected parents have an affected child. The trait "skips" generations. Affected individuals can be male or female. Both parents of an affected child are usually carriers (heterozygous).'},
+  {cat:'genetics', q:'How does gel electrophoresis work?', a:'DNA is negatively charged and placed in a gel. Electric current pulls fragments toward the positive electrode. Smaller fragments travel FARTHER (faster through gel); larger fragments stay near the top.'},
+  {cat:'genetics', q:'What is PCR used for?', a:'Polymerase Chain Reaction amplifies (makes millions of copies of) a specific DNA segment. Used in forensics, disease diagnosis, ancestry testing — allows analysis of tiny DNA samples.'},
+  {cat:'genetics', q:'What is a GMO?', a:'Genetically Modified Organism — an organism that has had DNA from another species inserted into its genome. Examples: Bt corn (insect resistance), golden rice (Vitamin A gene), insulin-producing bacteria.'},
+  {cat:'genetics', q:'What is CRISPR-Cas9?', a:'A gene-editing tool that uses guide RNA to direct the Cas9 protein (molecular scissors) to cut specific DNA sequences. Can add, remove, or correct genes with high precision.'},
+  {cat:'genetics', q:'What is the difference between introns and exons?', a:'Introns = non-coding sequences (intervening sequences) spliced OUT of mRNA before translation. Exons = coding sequences that are expressed and remain in mature mRNA (think: Exons are EXpressed, Introns are INtervening).'},
+  // EVOLUTION
+  {cat:'evolution', q:'What are the 4 key components of Darwin\'s theory of natural selection?', a:'1) Overproduction (more offspring than can survive), 2) Heritable variation in traits, 3) Struggle for existence (competition for limited resources), 4) Survival of the fittest (those with favorable traits reproduce more)'},
+  {cat:'evolution', q:'What is biological fitness?', a:'An organism\'s ability to SURVIVE AND REPRODUCE in its environment. NOT physical strength — fitness is measured by reproductive success. An organism that reproduces more is more "fit" even if physically smaller.'},
+  {cat:'evolution', q:'What is the difference between homologous and analogous structures?', a:'Homologous: Same underlying structure, different function → evidence of COMMON ANCESTRY (e.g., human arm, bat wing, whale flipper). Analogous: Different structure, same function → CONVERGENT EVOLUTION (e.g., bird wing vs. butterfly wing).'},
+  {cat:'evolution', q:'What is stabilizing selection?', a:'Both extreme phenotypes are selected AGAINST; the intermediate/average phenotype is favored. Result: LESS variation, population stays the same. Example: Human birth weight.'},
+  {cat:'evolution', q:'What is directional selection?', a:'One extreme phenotype is favored over the other. The population SHIFTS in one direction over time. Example: Antibiotic resistance in bacteria, peppered moths during industrial revolution.'},
+  {cat:'evolution', q:'What is disruptive selection?', a:'BOTH extreme phenotypes are favored; the middle phenotype is selected against. Result: MORE variation; population may split into two distinct groups. Example: Finches with large or small beaks when medium-sized seeds are gone.'},
+  {cat:'evolution', q:'What is the bottleneck effect?', a:'A dramatic reduction in population size (from disaster or hunting) leaves a small "bottleneck" of survivors with reduced genetic diversity. The remaining population may have different allele frequencies than the original by chance.'},
+  {cat:'evolution', q:'What is the founder effect?', a:'When a small group of individuals leaves to start a new population, genetic diversity is reduced. The new population has a subset of alleles from the original. Can lead to high rates of rare diseases in isolated groups.'},
+  {cat:'evolution', q:'What is gene flow?', a:'Movement of alleles between populations due to migration of individuals. Tends to make populations MORE SIMILAR by sharing alleles. Reduces genetic differences between populations.'},
+  {cat:'evolution', q:'How do you read a cladogram?', a:'Tips = modern species. Nodes (branching points) = common ancestors. Species sharing a more RECENT common ancestor are more closely related. Derived characters (new traits) appear along branches above the node where they evolved.'},
+  {cat:'evolution', q:'What is genetic drift?', a:'Random changes in allele frequency due to CHANCE, especially in small populations. NOT adaptive — not driven by natural selection. Can eliminate alleles randomly, reducing genetic diversity.'},
+  {cat:'evolution', q:'What are pre-zygotic isolating mechanisms?', a:'Barriers to reproduction that occur BEFORE fertilization: geographic, temporal (different breeding seasons), behavioral (different mating signals), mechanical (incompatible structures), and gametic (sperm can\'t fertilize egg) isolation.'},
+  {cat:'evolution', q:'What skeletal features show a hominid walked upright (bipedal)?', a:'Foramen magnum directly beneath skull (not behind), S-curved spine, wider/bowl-shaped pelvis, angled femur (thigh bone angled inward toward knees), non-opposable big toe, arched foot.'},
+  {cat:'evolution', q:'What is convergent evolution?', a:'Unrelated species independently evolve similar traits due to similar environmental pressures. Produces analogous structures. Example: dolphins and sharks both developed streamlined bodies and fins.'},
+  {cat:'evolution', q:'What is Hardy-Weinberg equilibrium?', a:'State where allele frequencies in a population DON\'T change over time. Requires: no mutation, no migration, large population, random mating, no natural selection. If violated, evolution is occurring.'},
+  // ECOLOGY
+  {cat:'ecology', q:'What is biomagnification?', a:'The INCREASING concentration of toxins (like DDT, mercury) at each trophic level as you move UP the food chain. Top predators accumulate the highest concentrations because they eat many organisms from lower levels.'},
+  {cat:'ecology', q:'What is the difference between bioaccumulation and biomagnification?', a:'Bioaccumulation = buildup in a SINGLE organism over its lifetime. Biomagnification = increase in concentration across TROPHIC LEVELS. Both happen together — organisms bioaccumulate, and this biomagnifies up the food chain.'},
+  {cat:'ecology', q:'What is the 10% rule in ecology?', a:'Only about 10% of energy is transferred from one trophic level to the next. The other 90% is lost as heat (from respiration), waste, and incomplete consumption. This is why food chains rarely exceed 4-5 levels.'},
+  {cat:'ecology', q:'What is a keystone species?', a:'A species that has a disproportionately large effect on its ecosystem relative to its abundance. Removing it dramatically changes or collapses the ecosystem. Example: sea otters control sea urchins, protecting kelp forests.'},
+  {cat:'ecology', q:'What causes the greenhouse effect to become a problem?', a:'Natural greenhouse gases are normal and necessary. The ENHANCED greenhouse effect — caused by human burning of fossil fuels (CO₂), livestock/landfills (CH₄), and agriculture (N₂O) — adds excess GHGs, trapping too much heat, warming Earth.'},
+  {cat:'ecology', q:'What is the difference between exponential and logistic growth?', a:'Exponential: J-shaped curve, unlimited growth, no resource limits (J = "jumping"). Logistic: S-shaped curve, growth slows as population approaches carrying capacity (K) when resources become limiting.'},
+  {cat:'ecology', q:'What is carrying capacity?', a:'The maximum population size an environment can sustainably support, given available food, water, space, and other resources. Logistic growth curves level off AT carrying capacity.'},
+  {cat:'ecology', q:'What is a Type I survivorship curve?', a:'Most individuals survive to old age, then die rapidly. Characteristic of K-selected species: humans, elephants, whales. Few offspring with high parental care. Convex (concave down) shape on a survivorship graph.'},
+  {cat:'ecology', q:'What is the Tragedy of the Commons?', a:'When a shared resource (commons) is freely available, each individual is incentivized to use as much as possible for personal gain, even when overuse destroys the resource for everyone. Leads to overexploitation.'},
+  {cat:'ecology', q:'What are the effects of deforestation on the carbon cycle?', a:'Burning/cutting trees releases stored CO₂ back to atmosphere. Fewer trees = less CO₂ absorbed from air. Double effect: releases carbon AND removes the carbon sink. Major contributor to rising atmospheric CO₂.'},
+  {cat:'ecology', q:'What is eutrophication?', a:'Excess nutrients (from agricultural fertilizer runoff) enter water → algae bloom → algae die → bacteria decompose them, using all dissolved oxygen → "dead zone" with no oxygen → fish and aquatic life die.'},
+  {cat:'ecology', q:'What is the difference between mutualism, commensalism, and parasitism?', a:'Mutualism (+/+): Both species benefit (bees and flowers). Commensalism (+/0): One benefits, other unaffected (barnacles on whale). Parasitism (+/-): One benefits, other harmed (tapeworm in host).'},
+  {cat:'ecology', q:'What is an age structure diagram (population pyramid)?', a:'A graph showing the distribution of ages in a population. Wide base = many young individuals, indicating rapid population GROWTH (typical of LDCs). Narrow/uniform base = stable or declining population (typical of MDCs).'},
+  {cat:'ecology', q:'What are density-dependent limiting factors?', a:'Factors whose effect INCREASES with population density: disease, food competition, predation, parasitism, intraspecific competition. They help regulate population size around carrying capacity.'},
+  {cat:'ecology', q:'What are density-independent limiting factors?', a:'Factors whose effect is the same REGARDLESS of population density: natural disasters (floods, fires, earthquakes), extreme weather, drought. They don\'t regulate population at carrying capacity.'},
+];
+
+let currentFlashcards = [...allFlashcards];
+let currentFCIndex = 0;
+
+function loadFlashcards() {
+  const cat = document.getElementById('fc-category').value;
+  currentFlashcards = cat === 'all' ? [...allFlashcards] : allFlashcards.filter(f => f.cat === cat);
+  currentFCIndex = 0;
+  document.getElementById('flashcard').classList.remove('flipped');
+  updateFlashcard();
+}
+
+function updateFlashcard() {
+  const fc = currentFlashcards[currentFCIndex];
+  document.getElementById('fc-front').textContent = fc.q;
+  document.getElementById('fc-back').textContent = fc.a;
+  document.getElementById('fc-counter').textContent = (currentFCIndex + 1) + ' / ' + currentFlashcards.length;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+
+function nextCard() {
+  currentFCIndex = (currentFCIndex + 1) % currentFlashcards.length;
+  updateFlashcard();
+}
+
+function prevCard() {
+  currentFCIndex = (currentFCIndex - 1 + currentFlashcards.length) % currentFlashcards.length;
+  updateFlashcard();
+}
+
+function shuffleFlashcards() {
+  for (let i = currentFlashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [currentFlashcards[i], currentFlashcards[j]] = [currentFlashcards[j], currentFlashcards[i]];
+  }
+  currentFCIndex = 0;
+  updateFlashcard();
+}
+
+// ===== QUIZ DATA =====
+const allQuestions = [
+  // GENETICS questions
+  {cat:'genetics', q:'During DNA replication, which enzyme is responsible for joining Okazaki fragments on the lagging strand?', opts:['DNA polymerase','Helicase','DNA ligase','RNA primase'], ans:2, exp:'DNA ligase "seals" the gaps between Okazaki fragments on the lagging strand, joining them into a continuous strand using phosphodiester bonds.'},
+  {cat:'genetics', q:'A student reads the template DNA strand: 3\'-TAC-GGA-ATT-5\'. What is the mRNA sequence produced during transcription?', opts:['5\'-AUG-CCU-UAA-3\'','3\'-AUG-CCU-UAA-5\'','5\'-TAC-GGA-ATT-3\'','5\'-UAC-CCU-UCC-3\''], ans:0, exp:'In transcription, RNA polymerase reads the template 3\'→5\' and builds mRNA 5\'→3\'. T→A becomes A in mRNA; G→C; A→U (not T). So TAC→AUG, GGA→CCU, ATT→UAA (stop codon!).'},
+  {cat:'genetics', q:'Which type of mutation creates a premature stop codon, resulting in a shorter-than-normal protein?', opts:['Silent mutation','Missense mutation','Nonsense mutation','Frameshift - deletion of 3 bases'], ans:2, exp:'A nonsense mutation changes a codon for an amino acid into a STOP codon (UAA, UAG, or UGA), causing translation to stop early. The resulting protein is shorter and usually non-functional.'},
+  {cat:'genetics', q:'In a cross between a red-flowered plant (RR) and a white-flowered plant (R\'R\') where the trait shows incomplete dominance, what percentage of F2 offspring (from crossing F1 × F1) will have red flowers?', opts:['25%','50%','75%','100%'], ans:0, exp:'F1 plants are all RR\' (pink). When crossed: RR × RR\' × R\'R\' generates 1 RR : 2 RR\' : 1 R\'R\'. Only RR (25%) has red flowers.'},
+  {cat:'genetics', q:'A woman with type AB blood and a man with type O blood have children. Which blood types are POSSIBLE for their children?', opts:['O only','A and B only','AB only','A, B, and O only'], ans:1, exp:'AB parent = I^A I^B. O parent = ii. Possible crosses: I^A i (Type A) or I^B i (Type B). Neither parent can pass two i alleles, so O is impossible. AB would require both I^A and I^B from the same parent, which is impossible here.'},
+  {cat:'genetics', q:'A pedigree shows two unaffected parents with an affected son and an unaffected daughter. The affected son\'s sons are all unaffected. What is the most likely inheritance pattern?', opts:['Autosomal dominant','Autosomal recessive','X-linked recessive','X-linked dominant'], ans:1, exp:'Two unaffected parents with an affected child = autosomal recessive (both parents are carriers Aa × Aa). If X-linked recessive, all sons of the affected man (X^b Y) would be unaffected (they get Y from dad), but the question says his sons are unaffected, which is consistent with autosomal recessive too. The key clue is unaffected parents → recessive.'},
+  {cat:'genetics', q:'In gel electrophoresis, where do the LARGEST DNA fragments end up?', opts:['Near the bottom (positive end), far from wells','Near the top (negative end), close to wells','In the middle of the gel','Randomly distributed throughout the gel'], ans:1, exp:'Large DNA fragments move SLOWLY through the gel matrix because they face more resistance. They end up near the TOP of the gel, close to where they were loaded (near the negative electrode). Small fragments travel farther toward the positive electrode.'},
+  {cat:'genetics', q:'What is the role of tRNA during translation?', opts:['Makes up the ribosome structure','Carries the genetic code from nucleus to ribosome','Brings specific amino acids to the ribosome and matches anticodon to mRNA codon','Splices out introns from mRNA'], ans:2, exp:'tRNA is the adapter molecule. One end has an ANTICODON that base-pairs with the mRNA codon. The other end carries the specific amino acid that corresponds to that codon. It delivers amino acids in the correct sequence.'},
+  {cat:'genetics', q:'A male is colorblind (X^b Y). He marries a female carrier of colorblindness (X^B X^b). What is the probability that their DAUGHTER will be colorblind?', opts:['0%','25%','50%','100%'], ans:2, exp:'Mother\'s gametes: X^B or X^b. Father\'s X gamete: X^b (the only X he has). Daughters get father\'s X^b + either X^B or X^b from mother. X^B X^b = carrier (50%), X^b X^b = colorblind (50%). So 50% of daughters will be colorblind.'},
+  {cat:'genetics', q:'Which of the following best describes the Central Dogma of molecular biology?', opts:['RNA → DNA → Protein','DNA → RNA → Protein','Protein → RNA → DNA','DNA → Protein directly'], ans:1, exp:'The Central Dogma: DNA → (transcription) → mRNA → (translation) → Protein. Information flows FROM DNA through RNA to protein. DNA stores information, mRNA carries it, ribosomes use it to make proteins.'},
+  {cat:'genetics', q:'A mutation changes the 5th codon of a gene from GGU (Glycine) to GGC (also Glycine). What type of mutation is this?', opts:['Missense','Nonsense','Silent (neutral)','Frameshift'], ans:2, exp:'Both GGU and GGC code for Glycine (the genetic code is degenerate/redundant). The same amino acid is incorporated, so there is NO CHANGE in the protein. This is a silent or neutral mutation.'},
+  {cat:'genetics', q:'During DNA replication, the new strand is built in which direction?', opts:['3\' to 5\'','5\' to 3\'','Either direction depending on the enzyme','Bidirectional simultaneously on same strand'], ans:1, exp:'DNA polymerase can ONLY add new nucleotides to the 3\' end of a growing chain. Therefore, the new strand is always synthesized in the 5\'→3\' direction. The template is read 3\'→5\'.'},
+  {cat:'genetics', q:'In a dihybrid cross between two RrYy plants (round yellow), what is the expected ratio of wrinkled yellow to round green offspring?', opts:['9:3:3:1 total, so 3:3 each','1:1','3:3 (equal)','1:2 wrinkled yellow to round green'], ans:2, exp:'Standard dihybrid ratio is 9 round yellow : 3 round green : 3 wrinkled yellow : 1 wrinkled green. Wrinkled yellow (rrY_) = 3/16 and round green (R_yy) = 3/16. So the ratio between them is 3:3, or 1:1.'},
+  {cat:'genetics', q:'What happens to an mRNA that contains ONLY the sequence AUG-UGA?', opts:['It codes for Methionine and then one more amino acid','It only codes for Methionine, then stops','It produces a non-functional protein because UGA is missense','It codes for two amino acids'], ans:1, exp:'AUG = start codon → codes for Methionine. UGA = stop codon → translation stops immediately. The ribosome releases the polypeptide, which is just a single Methionine amino acid. This would be a very short, non-functional peptide.'},
+  // EVOLUTION questions
+  {cat:'evolution', q:'Stabilizing selection _______ variation, while disruptive selection _______ variation in a population.', opts:['increases; decreases','decreases; increases','increases; increases','decreases; decreases'], ans:1, exp:'Stabilizing selection favors the AVERAGE phenotype and eliminates extremes → DECREASES variation. Disruptive selection favors BOTH extremes and eliminates the middle → INCREASES variation (may lead to two distinct groups).'},
+  {cat:'evolution', q:'Two populations of lizards are separated by a newly formed river. After 10,000 years, they can no longer interbreed even when brought together. What type of isolation ultimately caused speciation?', opts:['Temporal isolation','Geographic isolation initially, then became reproductive isolation','Only behavioral isolation','Gametic isolation alone'], ans:1, exp:'The river caused GEOGRAPHIC isolation first, preventing gene flow. Over time, each population evolved differently (mutations, different selective pressures). After enough change, reproductive isolation became permanent even without the barrier.'},
+  {cat:'evolution', q:'A whale\'s pelvic bones serve no function. These bones are an example of:', opts:['Analogous structures','Homologous structures','Vestigial structures','Adaptive radiation'], ans:2, exp:'Vestigial structures are remnants of structures that HAD a function in ancestral species but no longer do. Whale ancestors were land mammals with functional pelvises. As they evolved aquatic life, the pelvis became vestigial.'},
+  {cat:'evolution', q:'A population of bacteria is exposed to an antibiotic. Most die, but a few survive because they had a pre-existing mutation conferring resistance. The surviving bacteria reproduce, and the population becomes resistant. This is an example of:', opts:['Lamarckian evolution (acquired traits)','Natural selection — directional','The founder effect','Genetic drift'], ans:1, exp:'This is DIRECTIONAL NATURAL SELECTION. The antibiotic is the selective pressure. Bacteria with the resistance trait had higher fitness (survived and reproduced), shifting the population toward resistance. The mutation existed BEFORE the antibiotic — natural selection selected for it.'},
+  {cat:'evolution', q:'In a cladogram, Species A and Species B share a node that is more recent than the node shared by Species A and Species C. Which are most closely related?', opts:['A and C','B and C','A and B','All equally related'], ans:2, exp:'The more RECENT (closest to the tips) the shared node, the more closely related the species. A and B share a more recent common ancestor than A and C, so A and B are most closely related.'},
+  {cat:'evolution', q:'Which evolutionary force INCREASES genetic variation in a population?', opts:['Natural selection','Genetic drift','Mutation','Inbreeding'], ans:2, exp:'Mutations create NEW alleles — they are the only source of new genetic variation. Natural selection, drift, and inbreeding all CHANGE allele frequencies of existing variation but don\'t create new variation (selection and drift reduce variation over time).'},
+  {cat:'evolution', q:'The mule (offspring of a horse and a donkey) is viable but sterile. This is an example of which post-zygotic isolating mechanism?', opts:['Hybrid inviability','Hybrid sterility','Gametic isolation','Behavioral isolation'], ans:1, exp:'HYBRID STERILITY is when hybrid offspring are produced but are infertile. Mules have 63 chromosomes (32 from horse, 31 from donkey) — they can\'t undergo proper meiosis. Hybrid inviability would mean the offspring doesn\'t develop or survive.'},
+  {cat:'evolution', q:'Which type of evidence would provide the STRONGEST evidence that two organisms share a recent common ancestor?', opts:['They live in the same geographic area','They look similar externally','Their DNA sequences are 98% identical','They eat the same food'], ans:2, exp:'Molecular evidence (DNA sequence similarity) is the most direct evidence of common ancestry. More similar DNA = more recently diverged from a common ancestor. Physical appearance can be due to convergent evolution (analogous structures) in unrelated species.'},
+  {cat:'evolution', q:'A small isolated island population of birds experiences a severe hurricane that kills 90% of the birds randomly. The remaining 10% start a new population. This is an example of:', opts:['Founder effect','Natural selection','Bottleneck effect','Gene flow'], ans:2, exp:'The BOTTLENECK EFFECT occurs when a population is dramatically reduced (here by a hurricane) and the survivors are a random subset. The new population has reduced genetic diversity and different allele frequencies than the original — by CHANCE, not by selection.'},
+  {cat:'evolution', q:'What skeletal feature is MOST useful for identifying whether a hominid was bipedal?', opts:['The size of the teeth','The position of the foramen magnum','The color of bones','The thickness of rib bones'], ans:1, exp:'The FORAMEN MAGNUM (the hole through which the spinal cord connects to the brain) is directly beneath the skull in bipedal (upright-walking) hominids. In quadrupeds, it is more toward the back of the skull. This tells us head position and posture.'},
+  // ECOLOGY questions
+  {cat:'ecology', q:'A hawk eats a snake, which ate a frog, which ate a grasshopper, which ate grass. If the grass contains 10,000 units of energy, how much energy is available to the hawk?', opts:['10,000 units','1,000 units','10 units','1 unit'], ans:2, exp:'Using the 10% rule: Grass (10,000) → Grasshopper (1,000) → Frog (100) → Snake (10) → Hawk (10 units). Each trophic level transfer = 10% of energy from the level below.'},
+  {cat:'ecology', q:'DDT was sprayed over a lake. Years later, scientists found that fish-eating birds had dangerous DDT levels, even though the water had very low DDT. This demonstrates:', opts:['Bioaccumulation only','Biomagnification','Eutrophication','Acid deposition'], ans:1, exp:'BIOMAGNIFICATION: DDT concentration INCREASES at each trophic level. Plankton absorb a little → small fish eat many plankton (accumulate more) → large fish eat many small fish → birds eat many large fish → birds have the highest concentration, far exceeding water levels.'},
+  {cat:'ecology', q:'Burning fossil fuels releases CO₂, which acts as a greenhouse gas. What is the DIRECT effect of increased greenhouse gases?', opts:['Ozone depletion in stratosphere','More heat is trapped in the atmosphere, raising temperatures','Acid rain forms in clouds','UV radiation increases at ground level'], ans:1, exp:'Greenhouse gases (CO₂, CH₄, H₂O vapor, N₂O) allow sunlight in but trap heat radiated from Earth\'s surface. More GHGs = more heat trapped = higher global temperatures (global warming/climate change).'},
+  {cat:'ecology', q:'A deer population in a forest grows rapidly until it reaches 500 individuals, then growth slows and levels off at that number. The 500 is the:', opts:['Birth rate','Carrying capacity','Population density','Density-independent factor'], ans:1, exp:'CARRYING CAPACITY (K) is the maximum population size an environment can sustainably support. When a population reaches K in logistic growth, birth rate = death rate and population stabilizes. 500 deer = what the forest can support.'},
+  {cat:'ecology', q:'Which type of survivorship curve is characterized by most individuals dying at a young age, but survivors living very long?', opts:['Type I (Convex)','Type II (Linear)','Type III (Concave)','Type IV (Exponential)'], ans:2, exp:'TYPE III (Concave) curve: High mortality early in life (most die young), but survivors live long. Characteristic of r-selected species: fish, oysters, sea turtles, most insects, many plants. They produce MANY offspring but provide little parental care.'},
+  {cat:'ecology', q:'A wolf is removed from a national park. Deer populations explode, overgrazing destroys vegetation, small mammals lose habitat, birds that nested in the vegetation disappear, rivers erode and change course. This is an example of:', opts:['Symbiosis','Eutrophication','Trophic cascade','Biomagnification'], ans:2, exp:'A TROPHIC CASCADE occurs when removing a species (here a keystone predator — the wolf) causes a chain reaction through the food web. Adding wolves back to Yellowstone reversed this, showing wolves are a keystone species.'},
+  {cat:'ecology', q:'A fishing community finds that their fish catch decreases each year despite more boats and longer hours. Eventually the fish stock collapses. This is an example of:', opts:['Biological fitness','The Tragedy of the Commons','Density-independent limitation','Eutrophication'], ans:1, exp:'TRAGEDY OF THE COMMONS: Each fisher maximizes personal catch (rational individual behavior), but collective overuse destroys the shared resource (fish population). Everyone is harmed when the stock collapses. Solution requires regulation of the common resource.'},
+  {cat:'ecology', q:'Deforestation in tropical rainforests has which of these effects on the CARBON CYCLE?', opts:['Decreases CO₂ in the atmosphere','Increases CO₂ in the atmosphere AND reduces CO₂ absorption','Has no effect on carbon cycles','Increases carbon storage in soil'], ans:1, exp:'Deforestation has a double impact: 1) Burning/decomposing trees RELEASES stored carbon as CO₂. 2) Fewer trees = less CO₂ absorbed from the atmosphere via photosynthesis. This accelerates the greenhouse effect and climate change.'},
+  {cat:'ecology', q:'Fertilizer runoff enters a lake, causing algae to bloom. The algae die, bacteria decompose them, and the lake\'s oxygen levels crash. This sequence is called:', opts:['Bioaccumulation','Biomagnification','Eutrophication','Acid deposition'], ans:2, exp:'EUTROPHICATION: Excess nutrients (N, P) → algae bloom → algae die → bacteria decompose, using oxygen → hypoxic (low oxygen) dead zone → fish and aquatic life die. Common near agricultural areas with fertilizer runoff.'},
+  {cat:'ecology', q:'Which country\'s population pyramid would have a broad base with many young people and a narrow top with few elderly people?', opts:['Germany (MDC)','Japan (MDC)','Nigeria (LDC)','Italy (MDC)'], ans:2, exp:'Less Developed Countries (LDCs) typically have HIGH birth rates and HIGH death rates among elderly. This creates a WIDE BASE (many young) and narrow top (few elderly) population pyramid, indicating RAPID POPULATION GROWTH. Germany, Japan, and Italy are MDCs with more even distributions.'},
+];
+
+// ===== SHORT QUIZ =====
+let currentQuiz = [];
+let quizAnswered = {};
+
+function generateQuiz() {
+  const topic = document.getElementById('quiz-topic').value;
+  let pool = topic === 'all' ? allQuestions : allQuestions.filter(q => q.cat === topic);
+  pool = [...pool].sort(() => Math.random() - 0.5);
+  currentQuiz = pool.slice(0, Math.min(10, pool.length));
+  quizAnswered = {};
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  document.getElementById('quiz-score-box').classList.remove('show');
+  document.getElementById('quiz-submit-btn').style.display = 'block';
+
+  currentQuiz.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-question';
+    div.innerHTML = `
+      <div class="qnum">Question ${i+1} of ${currentQuiz.length} · ${q.cat.charAt(0).toUpperCase()+q.cat.slice(1)}</div>
+      <div class="qtext">${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o,j) => `<div class="opt" onclick="selectOpt(this,${i},${j})">${String.fromCharCode(65+j)}. ${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${i}"><strong>Explanation:</strong> ${q.exp}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectOpt(el, qi, oi) {
+  if (quizAnswered[qi] !== undefined) return;
+  quizAnswered[qi] = oi;
+  el.classList.add('selected');
+}
+
+function gradeQuiz() {
+  let score = 0;
+  currentQuiz.forEach((q, i) => {
+    const opts = document.querySelectorAll(`#quiz-container .quiz-question:nth-child(${i+1}) .opt`);
+    const selected = quizAnswered[i];
+    opts.forEach((opt, j) => {
+      if (j === q.ans) opt.classList.add('correct');
+      if (selected === j && j !== q.ans) opt.classList.add('wrong');
+    });
+    if (selected === q.ans) score++;
+    const exp = document.getElementById('exp-' + i);
+    exp.classList.add('show');
+    if (selected !== q.ans) exp.classList.add('wrong-exp');
+  });
+
+  const pct = Math.round((score / currentQuiz.length) * 100);
+  const scoreBox = document.getElementById('quiz-score-box');
+  const scoreNum = document.getElementById('quiz-score-num');
+  const scoreMsg = document.getElementById('quiz-score-msg');
+  scoreNum.textContent = score + '/' + currentQuiz.length + ' (' + pct + '%)';
+  scoreNum.className = 'score-num ' + (pct >= 90 ? 's-a' : pct >= 80 ? 's-b' : pct >= 70 ? 's-c' : pct >= 60 ? 's-d' : 's-f');
+  scoreMsg.textContent = pct >= 90 ? '🎉 Excellent! You know this material well!' : pct >= 70 ? '👍 Good job! Review the questions you missed.' : '📚 Keep studying — review the explanations for missed questions.';
+  scoreBox.classList.add('show');
+  document.getElementById('quiz-submit-btn').style.display = 'none';
+}
+
+// ===== LONG QUIZ =====
+let longQuiz = [];
+let lqAnswered = {};
+
+const longQuizPool = [
+  // Extra unique questions for long quiz
+  {cat:'genetics', q:'Which enzyme adds RNA primers during DNA replication?', opts:['DNA polymerase','Helicase','Primase','Ligase'], ans:2, exp:'Primase (a type of RNA polymerase) synthesizes the short RNA primers that provide the 3\' OH group needed for DNA polymerase to begin synthesis. DNA polymerase cannot start a new strand from scratch.'},
+  {cat:'genetics', q:'If one strand of DNA reads 5\'-ATCGGA-3\', what is the complementary strand?', opts:['5\'-ATCGGA-3\'','3\'-TAGCCT-5\'','5\'-TAGCCT-3\'','3\'-UAGCCU-5\''], ans:1, exp:'Complementary base pairing: A-T and G-C. The complementary strand runs antiparallel. Reading 5\'→3\' of the template = 5\'-ATCGGA-3\', the complement written 3\'→5\' = 3\'-TAGCCT-5\'. Option B shows this correctly.'},
+  {cat:'genetics', q:'Restriction enzymes are used in genetic engineering to:', opts:['Copy DNA using PCR','Cut DNA at specific recognition sequences','Join DNA fragments together','Remove introns from mRNA'], ans:1, exp:'Restriction enzymes (restriction endonucleases) recognize specific short DNA sequences (usually 4-8 bases) and cut the DNA at or near these sites. This creates "sticky ends" that can be joined with complementary DNA fragments from another organism.'},
+  {cat:'genetics', q:'A man with sickle cell disease (HbS HbS) marries a woman who is a carrier (HbA HbS). What is the probability their child will have sickle cell disease?', opts:['0%','25%','50%','75%'], ans:2, exp:'HbS HbS × HbA HbS → offspring: HbA HbS (carrier, 50%) and HbS HbS (sickle cell disease, 50%). Fifty percent of their children will have the disease.'},
+  {cat:'genetics', q:'What makes mRNA processing in eukaryotes different from prokaryotes?', opts:['Eukaryotes add introns; prokaryotes remove them','Eukaryotic mRNA has introns removed and a 5\' cap and poly-A tail added','Prokaryotes use ribosomes; eukaryotes use other organelles','Eukaryotes transcribe RNA in the cytoplasm'], ans:1, exp:'In eukaryotes, pre-mRNA undergoes processing: 1) Introns (non-coding) are spliced out, 2) Exons are joined, 3) A 5\' methylguanosine cap is added (protects mRNA, helps with ribosome binding), 4) A poly-A tail is added (protects from degradation, helps export). Prokaryotes lack these steps.'},
+  {cat:'genetics', q:'Which observation about chromosomal mutations is correct?', opts:['Inversions always kill the organism','Translocations always cause cancer','Deletions involving many genes are typically more harmful than those involving few','Duplications always increase fitness'], ans:2, exp:'The more genes lost in a deletion, the more likely it is to be lethal or severely harmful. Small deletions may be tolerated; large deletions affecting essential genes are typically fatal or cause severe disorders (e.g., Cri du chat syndrome from deletion of chromosome 5p).'},
+  {cat:'genetics', q:'In a testcross, an organism with an unknown genotype is crossed with:', opts:['Another heterozygous individual','The homozygous dominant individual','The homozygous recessive individual','The F1 generation'], ans:2, exp:'A testcross involves crossing an individual with an UNKNOWN genotype with a HOMOZYGOUS RECESSIVE individual (genotype aa). If the unknown shows dominant phenotype, the offspring ratios reveal whether it\'s AA (all dominant offspring) or Aa (1/2 dominant, 1/2 recessive).'},
+  {cat:'genetics', q:'Which statement about the genetic code is correct?', opts:['Each amino acid is coded by exactly one codon','Each codon codes for exactly one amino acid (though multiple codons may code for the same amino acid)','Each codon can code for multiple amino acids','The genetic code is different in different organisms'], ans:1, exp:'The genetic code is UNAMBIGUOUS (each codon codes for exactly ONE amino acid or stop signal) but DEGENERATE/REDUNDANT (multiple codons can code for the same amino acid). The code is also nearly universal — the same in almost all living organisms, strong evidence for common ancestry.'},
+  {cat:'genetics', q:'Gene therapy introduces a functional gene into a patient\'s cells. The biggest challenge is:', opts:['Finding the mutation','Sequencing the patient\'s DNA','Delivering the gene into target cells without triggering immune responses','Deciding which amino acid to change'], ans:2, exp:'The delivery challenge is primary: the correct gene must get INTO the right cells (delivery), be expressed at the right level, AND not cause the immune system to attack the delivery vehicle (usually a modified virus/vector). Off-target integration and immune reactions are the main hurdles.'},
+  {cat:'evolution', q:'Which of the following populations would be MOST affected by genetic drift?', opts:['A population of 10 million salmon in the Pacific Ocean','A population of 50 gray wolves on an isolated island','A nationwide population of 500 million sparrows','A population of 1 million deer in a large forest'], ans:1, exp:'Genetic drift has its GREATEST effect in SMALL populations. Random chance can significantly change allele frequencies in a small group (50 wolves). In large populations (millions), random fluctuations average out and have little effect on overall allele frequencies.'},
+  {cat:'evolution', q:'The forelimbs of a human, bat, and whale all have the same set of bones (humerus, radius, ulna, carpals, etc.) despite very different functions. This is evidence of:', opts:['Convergent evolution','Common ancestry through divergent evolution','Analogous structures','Artificial selection'], ans:1, exp:'HOMOLOGOUS structures sharing the same underlying anatomy despite different functions provide strong evidence of COMMON ANCESTRY (divergent evolution). The forelimbs evolved from a common ancestor\'s limb and were modified for different purposes (grasping, flying, swimming).'},
+  {cat:'evolution', q:'According to Hardy-Weinberg equilibrium, which condition would DISRUPT equilibrium (cause evolution)?', opts:['Extremely large population size','Random mating among all individuals','Immigration of individuals from another population','No mutations occurring'], ans:2, exp:'GENE FLOW (immigration/emigration of individuals carrying alleles) violates Hardy-Weinberg conditions and changes allele frequencies → evolution occurs. H-W equilibrium requires: no mutation, no migration/gene flow, large population, random mating, no natural selection.'},
+  {cat:'evolution', q:'Humans and chimpanzees share approximately 98-99% of DNA sequence identity. This molecular evidence suggests they:', opts:['Are the same species','Had a common ancestor relatively recently in evolutionary time','Cannot interbreed due to mechanical isolation','Evolved through convergent evolution'], ans:1, exp:'High DNA sequence similarity (98-99%) indicates that humans and chimpanzees diverged from a COMMON ANCESTOR relatively recently (approximately 5-7 million years ago). They are more closely related to each other than either is to gorillas or other primates.'},
+  {cat:'evolution', q:'A flower species has a very specifically shaped flower that only one bee species can pollinate. If the bee goes extinct, what type of isolation might this represent for plants that lose pollinators?', opts:['Temporal isolation','Mechanical isolation','Gametic isolation','Habitat isolation'], ans:1, exp:'MECHANICAL isolation occurs when organisms have structural incompatibilities that prevent reproduction. Here, if another bee species with a different body shape can\'t fit the flower, the plants are mechanically isolated from being pollinated by those bees — preventing gene flow.'},
+  {cat:'evolution', q:'The Galápagos finches show many species with different beak shapes, all descended from a common ancestor. This is an example of:', opts:['Convergent evolution','Adaptive radiation (divergent evolution)','Stabilizing selection','Genetic equilibrium'], ans:1, exp:'ADAPTIVE RADIATION (divergent evolution): A single ancestral species diversified into many species to fill different ecological niches (different beak shapes for different food sources). This is the classic example of divergent evolution driven by natural selection in different environments.'},
+  {cat:'ecology', q:'Pesticides are sprayed on farmland. All insects are killed EXCEPT those with a rare mutation giving pesticide resistance. The survivors reproduce, and within 20 years, most insects are resistant. This is:', opts:['Artificial selection only (humans chose traits)','Natural selection — directional','Genetic drift in a small population','The founder effect'], ans:1, exp:'This is NATURAL SELECTION (directional). The pesticide is a NATURAL selective pressure (even though human-made, the selection mechanism is natural). Insects didn\'t "develop" resistance because of pesticide exposure — they had PRE-EXISTING mutations. Selection eliminated the non-resistant, leaving resistant to reproduce.'},
+  {cat:'ecology', q:'Which factor is density-INDEPENDENT?', opts:['Food competition among deer in a forest','Disease spread through a crowded rabbit population','A volcanic eruption that destroys a coral reef','Predation increasing as prey becomes more abundant'], ans:2, exp:'DENSITY-INDEPENDENT factors affect a population REGARDLESS of its size/density. A volcanic eruption kills a percentage of the population whether there are 10 or 10,000 organisms — it doesn\'t care about density. Food competition, disease spread, and predation increase with population density.'},
+  {cat:'ecology', q:'The human use of chlorofluorocarbons (CFCs) has been linked to which environmental problem?', opts:['Acid rain formation','Eutrophication','Ozone depletion in the stratosphere','Biomagnification of toxins'], ans:2, exp:'CFCs release chlorine atoms in the stratosphere. Each chlorine atom catalytically destroys ozone (O₃) molecules repeatedly. Ozone depletion allows more UV radiation to reach Earth\'s surface, increasing skin cancer, eye damage, and harm to marine phytoplankton. The Montreal Protocol banned CFCs.'},
+  {cat:'ecology', q:'In an ecosystem, which organisms play the MOST critical role in cycling nutrients back into the soil from dead organisms?', opts:['Producers','Primary consumers','Decomposers','Tertiary consumers'], ans:2, exp:'DECOMPOSERS (bacteria and fungi) break down dead organic matter into inorganic nutrients (ammonium, phosphates, nitrates). Without decomposers, nutrients would be locked in dead biomass and unavailable for producers. They are the "recyclers" of ecosystems.'},
+  {cat:'ecology', q:'A population of rabbits shows exponential growth. What is the most likely reason they suddenly switch to logistic growth?', opts:['Rabbits begin to reproduce more slowly for unknown reasons','Resources (food, space) become limiting as the population grows larger','A new predator arrives and kills half the population','The rabbits evolve resistance to disease'], ans:1, exp:'LOGISTIC GROWTH begins when resources (food, space, shelter) become LIMITING. As the rabbit population grows, intraspecific competition for scarce resources increases, reducing the growth rate. This is density-dependent limitation — the more rabbits, the more competition, the slower the growth.'},
+  {cat:'ecology', q:'A community ecologist is concerned that removing an invasive fish species from a lake might actually HARM the ecosystem. What ecological concept best explains this concern?', opts:['The fish might be a keystone species despite being invasive','Exponential growth will fill the gap','Hardy-Weinberg equilibrium is maintained','Biomagnification will increase'], ans:0, exp:'Even invasive species can become integrated into food webs as KEYSTONE SPECIES or important prey items. Removing them abruptly could cause a trophic cascade, disrupting other species that now depend on them for food or that were being controlled by them. Any removal must be planned carefully.'},
+];
+
+function startLongQuiz() {
+  // Mix all questions
+  let pool = [...allQuestions, ...longQuizPool].sort(() => Math.random() - 0.5);
+  // Ensure mix of topics
+  const genetics = pool.filter(q => q.cat === 'genetics').slice(0, 20);
+  const evolution = pool.filter(q => q.cat === 'evolution').slice(0, 15);
+  const ecology = pool.filter(q => q.cat === 'ecology').slice(0, 15);
+  longQuiz = [...genetics, ...evolution, ...ecology].sort(() => Math.random() - 0.5);
+  lqAnswered = {};
+
+  document.getElementById('longquiz-start').style.display = 'none';
+  document.getElementById('longquiz-container').style.display = 'block';
+  document.getElementById('longquiz-score-box').classList.remove('show');
+
+  const container = document.getElementById('longquiz-questions');
+  container.innerHTML = '';
+
+  longQuiz.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-question';
+    div.innerHTML = `
+      <div class="qnum">Question ${i+1} of ${longQuiz.length} · ${q.cat.charAt(0).toUpperCase()+q.cat.slice(1)}</div>
+      <div class="qtext">${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o,j) => `<div class="opt" onclick="selectLQ(this,${i},${j})">${String.fromCharCode(65+j)}. ${o}</div>`).join('')}
+      </div>
+      <div class="explanation" id="lqexp-${i}"><strong>Explanation:</strong> ${q.exp}</div>
+    `;
+    container.appendChild(div);
+
+    div.querySelector('.options').addEventListener('click', () => {
+      document.getElementById('lq-progress').style.width = (Object.keys(lqAnswered).length / longQuiz.length * 100) + '%';
+    });
+  });
+}
+
+function selectLQ(el, qi, oi) {
+  if (lqAnswered[qi] !== undefined) return;
+  const opts = el.parentElement.querySelectorAll('.opt');
+  opts.forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  lqAnswered[qi] = oi;
+  document.getElementById('lq-progress').style.width = (Object.keys(lqAnswered).length / longQuiz.length * 100) + '%';
+}
+
+function gradeLongQuiz() {
+  let score = 0;
+  let byTopic = {genetics:{correct:0,total:0}, evolution:{correct:0,total:0}, ecology:{correct:0,total:0}};
+
+  longQuiz.forEach((q, i) => {
+    const opts = document.querySelectorAll(`#longquiz-questions .quiz-question:nth-child(${i+1}) .opt`);
+    const selected = lqAnswered[i];
+    opts.forEach((opt, j) => {
+      if (j === q.ans) opt.classList.add('correct');
+      if (selected === j && j !== q.ans) opt.classList.add('wrong');
+    });
+    byTopic[q.cat].total++;
+    if (selected === q.ans) { score++; byTopic[q.cat].correct++; }
+    const exp = document.getElementById('lqexp-' + i);
+    exp.classList.add('show');
+    if (selected !== q.ans) exp.classList.add('wrong-exp');
+  });
+
+  const pct = Math.round((score / longQuiz.length) * 100);
+  const scoreBox = document.getElementById('longquiz-score-box');
+  const scoreNum = document.getElementById('lq-score-num');
+  const scoreMsg = document.getElementById('lq-score-msg');
+
+  scoreNum.textContent = score + '/' + longQuiz.length + ' (' + pct + '%)';
+  scoreNum.className = 'score-num ' + (pct >= 90 ? 's-a' : pct >= 80 ? 's-b' : pct >= 70 ? 's-c' : pct >= 60 ? 's-d' : 's-f');
+  scoreMsg.textContent = pct >= 90 ? '🎉 Outstanding! You\'re ready for the exam!' : pct >= 80 ? '👍 Great work! A few areas to polish.' : pct >= 70 ? '📚 Good effort — review missed concepts.' : '💪 Keep studying — go back through the study guide!';
+
+  const breakdown = document.getElementById('lq-breakdown');
+  breakdown.innerHTML = `
+    <table class="data-table" style="margin-top:0.75rem;">
+      <tr><th>Topic</th><th>Score</th><th>%</th></tr>
+      ${Object.entries(byTopic).map(([t, b]) => `<tr><td>${t.charAt(0).toUpperCase()+t.slice(1)}</td><td>${b.correct}/${b.total}</td><td>${Math.round(b.correct/b.total*100)||0}%</td></tr>`).join('')}
+    </table>
+  `;
+
+  scoreBox.classList.add('show');
+  scoreBox.scrollIntoView({behavior:'smooth'});
+}
+
+// ===== INIT =====
+loadFlashcards();
+generateQuiz();
+</script>
+</body>
+</html>
